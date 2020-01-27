@@ -6,6 +6,9 @@ const
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()); // creates express http server
 
+const request = require('request')
+var PAGE_ACCESS_TOKEN = 'EAAC6SKNTfKQBAGvL4kHxN3bSVOCOgW5uEQhrWtKFZBargc6cKeQrgZCrQCiZA5IH4Hqxa1TrkJ7BIfL15ATSIJ5mk47HcZBYBZAw3seZA9d3L7aYz5KdMYPIpZCGpjClWN0ZC41FerEyRV7p0msCrH2DbWhJD0Deyy5gufNqHd5mem17mZAmiFmVWh058ZAjlnZCdUZD'; 
+
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
@@ -24,6 +27,57 @@ app.post('/webhook', (req, res) => {
       // will only ever contain one message, so we get index 0
       let webhook_event = entry.messaging[0];
       console.log(webhook_event);
+
+      var recipientId = webhook_event.sender.id 
+      var message = webhook_event.message 
+      if(message){
+
+      	if(message.text){
+
+      		if(message.text=="HI" || message.text=="hi" || message.text=="Hi") {
+
+				  var messageData = {
+					    recipient: {
+					          id: recipientId
+				      },
+		 	       	 message: {
+				          text: "Welcome from MT Boxing Club",
+				          metadata: "DEVELOPER_DEFINED_METADATA"	
+				        }
+				    };
+
+					 request({
+					    uri: 'https://graph.facebook.com/v5.0/me/messages',
+					    qs: { access_token: PAGE_ACCESS_TOKEN },
+					    method: 'POST',
+					    json: messageData
+
+					  }, function (error, response, body) {
+						    if(error) {
+						      console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+						    }
+						    else {
+						        console.log("Successfully sent message with id %s to recipient %s", 
+						          messageId, recipientId);
+						    } 
+					  	}
+					  });  	
+      		}
+      		else if(message.text==""){
+
+      		}
+      		else{
+
+      		}
+
+      	}
+      	if(message.attachment){
+
+      	}
+
+      }
+
+
     });
 
     // Returns a '200 OK' response to all requests
@@ -67,3 +121,8 @@ app.get('/webhook', (req, res) => {
 app.get('/',(req,res)=>{
 	res.send("Hello World")
 })
+
+
+
+
+
