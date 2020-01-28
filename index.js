@@ -126,6 +126,10 @@ app.get('/setgsbutton',function(req,res){
     setupGetStartedButton(res);    
 });
 
+app.get('/setpersistentmenu',function(req,res){
+    setupPersistentMenu(res);    
+});
+
 function setupGetStartedButton(res){
         var messageData = {
                 "get_started":{"payload":"USER_DEFINED_PAYLOAD"}                
@@ -149,6 +153,63 @@ function setupGetStartedButton(res){
         });
     } 
 
+
+
+function setupPersistentMenu(res){
+        var messageData = { 
+            "persistent_menu":[
+                {
+                  "locale":"default",
+                  "composer_input_disabled":false,
+                  "call_to_actions":[
+                      {
+                        "title":"Info",
+                        "type":"nested",
+                        "call_to_actions":[
+                            {
+                              "title":"Help",
+                              "type":"postback",
+                              "payload":"HELP_PAYLOAD"
+                            },
+                            {
+                              "title":"Contact Me",
+                              "type":"postback",
+                              "payload":"CONTACT_INFO_PAYLOAD"
+                            }
+                        ]
+                      },
+                      {
+                        "type":"web_url",
+                        "title":"Visit website ",
+                        "url":"http://www.google.com",
+                        "webview_height_ratio":"full"
+                    }
+                ]
+            },
+            {
+              "locale":"zh_CN",
+              "composer_input_disabled":false
+            }
+          ]          
+        };
+        // Start the request
+        request({
+            url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ PAGE_ACCESS_TOKEN,
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            form: messageData
+        },
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                // Print out the response body
+                res.send(body);
+
+            } else { 
+                // TODO: Handle errors
+                res.send(body);
+            }
+        });
+    }
 
 
 
