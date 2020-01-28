@@ -40,7 +40,7 @@ app.post('/webhook', (req, res) => {
 					          id: recipientId
 				      },
 		 	       	 message: {
-				          text: "Welcome from MT Boxing Club",
+				          text: "Welcome from MTT Boxing Club",
 				        //  metadata: "DEVELOPER_DEFINED_METADATA"	
                 "quick_replies":[
                  {
