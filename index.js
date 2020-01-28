@@ -53,7 +53,7 @@ app.post('/webhook', (req, res) => {
         "content_type":"text",
         "title":"Green",
         "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://example.com/img/green.png"
+        "image_url":"https://www.iconsdb.com/icons/preview/green/circle-xxl.png"
                   }
                 ]
 				        }
