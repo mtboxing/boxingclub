@@ -42,7 +42,20 @@ app.post('/webhook', (req, res) => {
 				      },
 		 	       	 message: {
 				          text: "Welcome from MT Boxing Club",
-				          metadata: "DEVELOPER_DEFINED_METADATA"	
+				        //  metadata: "DEVELOPER_DEFINED_METADATA"	
+                "quick_replies":[
+                 {
+        "content_type":"text",
+        "title":"Red",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"http://example.com/img/red.png"
+                  },{
+        "content_type":"text",
+        "title":"Green",
+        "payload":"<POSTBACK_PAYLOAD>",
+        "image_url":"http://example.com/img/green.png"
+                  }
+                ]
 				        }
 				    };
 
