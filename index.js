@@ -29,12 +29,11 @@ app.post('/webhook', (req, res) => {
       console.log(webhook_event);
 
       var recipientId = webhook_event.sender.id 
-      var message = webhook_event.message 
-      if(message){
+      var message = webhook_event.message || webhook_event.postback
 
-      	if(message.text){
+      	if(message.text || message.title || message.payload){
 
-      		if(message.text=="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
+      		if(message.text=="Get Started" || message.title =="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
 
 				  var messageData = {
 					    recipient: {
@@ -88,7 +87,7 @@ app.post('/webhook', (req, res) => {
 
       	}
 
-      }
+      
 
 
     });
