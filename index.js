@@ -34,7 +34,7 @@ app.post('/webhook', (req, res) => {
 
       	if(message.text){
 
-      		if(message.text=="Get Started" ||message.text=="HI" || message.text=="hi" || message.text=="Hi") {
+      		if(message.text=="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
 
 				  var messageData = {
 					    recipient: {
