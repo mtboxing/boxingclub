@@ -37,41 +37,8 @@ app.post('/webhook', (req, res) => {
       		if(message.text=="Get Started" || message.title =="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
 
 				  
-           var messageData = 
-          {
-              recipient: 
-                {
-                    id: recipientId
-                },
-               message:
-               {
-                  text: "Hello Welcome to MT Boxing Club where you can watch game or challenge the match.",
-               }
-               
-            };
-
-           request(
-               {
-                  uri: 'https://graph.facebook.com/v5.0/me/messages',
-                  qs: { access_token: PAGE_ACCESS_TOKEN },
-                  method: 'POST',
-                  json: messageData
-
-                }, function (error, response, body) 
-                {
-                if(error) 
-                  {
-                  console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
-                  }
-                }
-            );
-
-            var messageData = 
-          {
-              recipient: 
-                {
-                    id: recipientId
-                },
+           
+            var response = {              
                
                message: 
                {
@@ -94,21 +61,7 @@ app.post('/webhook', (req, res) => {
                 }
             };
 
-           request(
-               {
-                  uri: 'https://graph.facebook.com/v5.0/me/messages',
-                  qs: { access_token: PAGE_ACCESS_TOKEN },
-                  method: 'POST',
-                  json: messageData
-
-                }, function (error, response, body) 
-                {
-                if(error) 
-                  {
-                  console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
-                  }
-                }
-            ); 
+            callSendAPI(recipientId, response) 
       		}
       		else if(message.text=="")
           {
@@ -130,6 +83,31 @@ app.post('/webhook', (req, res) => {
   }
 
 });
+
+
+function callSendAPI(sender_psid, response) {
+  // Construct the message body
+  let request_body = {
+    "recipient": {
+      "id": sender_psid
+    },
+    "message": response
+  }
+
+  // Send the HTTP request to the Messenger Platform
+  request({
+    "uri": "https://graph.facebook.com/v2.6/me/messages",
+    "qs": { "access_token": PAGE_ACCESS_TOKEN },
+    "method": "POST",
+    "json": request_body
+  }, (err, res, body) => {
+    if (!err) {
+      console.log('message sent!')
+    } else {
+      console.error("Unable to send message:" + err);
+    }
+  }); 
+}
 
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
@@ -178,7 +156,7 @@ function setupGetStartedButton(res){
                 "greeting":[
   {
     "locale":"default",
-    "text":"Hello {{user_first_name}}!"
+    "text":"Hello {{user_full_name}}!"
   }
 ]              
         };
