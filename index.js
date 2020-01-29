@@ -59,8 +59,8 @@ app.post('/webhook', (req, res) => {
             };
 
             callSendAPI(recipientId, response1).then(()=>{
-              return callSendAPI(recipientId, response2).then(()=>{
-                return callSendAPI(recipientId, response3);
+              callSendAPI(recipientId, response2).then(()=>{
+                callSendAPI(recipientId, response3);
               });
             }); 
       		}
