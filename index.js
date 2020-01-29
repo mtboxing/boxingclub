@@ -40,7 +40,7 @@ app.post('/webhook', (req, res) => {
           {
 					    recipient: 
                 {
-					          id: recipientId;
+					          id: recipientId
 				        },
                message:
                {
