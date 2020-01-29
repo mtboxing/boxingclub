@@ -37,8 +37,8 @@ app.post('/webhook', (req, res) => {
       		if(message.text=="Get Started" || message.title =="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
 
 				  
-           var response1 = "Hello";
-           var response2 = "Welcome to MT Boxing Club";
+           var response1 = {text:"Hello"};
+           var response2 = {text:"Welcome to MT Boxing Club"};
            var response3 = {           
                text: "At any time, use the menu below to navigate through the features.",
                
