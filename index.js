@@ -31,55 +31,62 @@ app.post('/webhook', (req, res) => {
       var recipientId = webhook_event.sender.id 
       var message = webhook_event.message || webhook_event.postback
 
-      	if(message.text || message.title || message.payload){
+      	if(message.text || message.title || message.payload)
+        {
 
       		if(message.text=="Get Started" || message.title =="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
 
-				  var messageData = {
-					    recipient: {
-					          id: recipientId
-				      },
-		 	       	 message: {
-				          text: "Hi Aung Kaung Myat! Welcome to MT Boxing Club where you can watch game or challenge the match.",
+				  var messageData = 
+          {
+					    recipient: 
+                {
+					          id: recipientId;
+				        },
+               message:
+               {
+                  text: "Hi {{user_full_name}}  Welcome to MT Boxing Club where you can watch game or challenge the match.",
+               }
+		 	       	 message: 
+               {
                   text: "At any time, use the menu below to navigate through the features.",
 
 				        //  metadata: "DEVELOPER_DEFINED_METADATA"	
-                "quick_replies":[
+                "quick_replies":
+                [
                  {
-        "content_type":"text",
-        "title":"Red",
-        "payload":"<POSTBACK_PAYLOAD>",
-                  },{
-        "content_type":"text",
-        "title":"Green",
-        "payload":"<POSTBACK_PAYLOAD>",
+                    "content_type":"text",
+                    "title":"Red",
+                    "payload":"<POSTBACK_PAYLOAD>",
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Green",
+                    "payload":"<POSTBACK_PAYLOAD>",
                   }
                 ]
 				        }
 				    };
 
-					 request({
-					    uri: 'https://graph.facebook.com/v5.0/me/messages',
-					    qs: { access_token: PAGE_ACCESS_TOKEN },
-					    method: 'POST',
-					    json: messageData
+					 request(
+               {
+    					    uri: 'https://graph.facebook.com/v5.0/me/messages',
+    					    qs: { access_token: PAGE_ACCESS_TOKEN },
+    					    method: 'POST',
+    					    json: messageData
 
-					  }, function (error, response, body) {
-						    if(error) {
+    					  }, function (error, response, body) 
+                {
+						    if(error) 
+                  {
 						      console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
-						    }
-					  	}
+						      }
+					  	  }
 					  );  	
       		}
-      		else if(message.text==""){
+      		else if(message.text=="")
+          {
 
       		}
-      		else{
-
-      		}
-
-      	}
-      	if(message.attachment){
 
       	}
 
@@ -109,16 +116,16 @@ app.get('/webhook', (req, res) => {
   let challenge = req.query['hub.challenge'];
     
   // Checks if a token and mode is in the query string of the request
-  if (mode && token) {
-  
+  if (mode && token) 
+  {
     // Checks the mode and token sent is correct
-    if (mode === 'subscribe' && token === VERIFY_TOKEN) {
-      
+    if (mode === 'subscribe' && token === VERIFY_TOKEN) 
+    {
       // Responds with the challenge token from the request
       console.log('WEBHOOK_VERIFIED');
       res.status(200).send(challenge);
-    
-    } else {
+    } else 
+    {
       // Responds with '403 Forbidden' if verify tokens do not match
       res.sendStatus(403);      
     }
