@@ -37,13 +37,11 @@ app.post('/webhook', (req, res) => {
       		if(message.text=="Get Started" || message.title =="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
 
 				  
-           
-            var response = {              
+           var response1 = "Hello";
+           var response2 = "Welcome to MT Boxing Club";
+           var response3 = {           
+               text: "At any time, use the menu below to navigate through the features.",
                
-               
-                  text: "At any time, use the menu below to navigate through the features.",
-
-                //  metadata: "DEVELOPER_DEFINED_METADATA"  
                 "quick_replies":
                 [
                  {
@@ -60,7 +58,11 @@ app.post('/webhook', (req, res) => {
                 
             };
 
-            callSendAPI(recipientId, response) 
+            callSendAPI(recipientId, response1).then(()=>{
+              return callSendAPI(recipientId, response2).then(()=>{
+                return callSendAPI(recipientId, response3);
+              });
+            }); 
       		}
       		else if(message.text=="")
           {
