@@ -40,7 +40,9 @@ app.post('/webhook', (req, res) => {
 					          id: recipientId
 				      },
 		 	       	 message: {
-				          text: "Welcome from MTT Boxing Club",
+				          text: "Hi Aung Kaung Myat! Welcome to MT Boxing Club where you can watch game or challenge the match.",
+                  text: "At any time, use the menu below to navigate through the features.",
+
 				        //  metadata: "DEVELOPER_DEFINED_METADATA"	
                 "quick_replies":[
                  {
