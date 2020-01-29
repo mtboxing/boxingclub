@@ -36,54 +36,7 @@ app.post('/webhook', (req, res) => {
 
       		if(message.text=="Get Started" || message.title =="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
 
-				  var messageData = {
-            "greeting":[ 
-                {
-                  "locale":"default",
-                  "text":"Hello {{user_first_name}}!"
-                }
-            ]
-
-          
-          
-               /*
-		 	       	 message: 
-               {
-                  text: "At any time, use the menu below to navigate through the features.",
-
-				        //  metadata: "DEVELOPER_DEFINED_METADATA"	
-                "quick_replies":
-                [
-                 {
-                    "content_type":"text",
-                    "title":"Red",
-                    "payload":"<POSTBACK_PAYLOAD>",
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Green",
-                    "payload":"<POSTBACK_PAYLOAD>",
-                  }
-                ]
-				        }*/
-				    };
-
-					 request(
-               {
-    					    uri: 'https://graph.facebook.com/v5.0/me/messages',
-    					    qs: { access_token: PAGE_ACCESS_TOKEN },
-    					    method: 'POST',
-    					    json: messageData
-
-    					  }, function (error, response, body) 
-                {
-						    if(error) 
-                  {
-						      console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
-						      }
-					  	  }
-					  );  	
-
+				  
            var messageData = 
           {
               recipient: 
@@ -94,7 +47,32 @@ app.post('/webhook', (req, res) => {
                {
                   text: "Hello Welcome to MT Boxing Club where you can watch game or challenge the match.",
                }
-               /*
+               
+            };
+
+           request(
+               {
+                  uri: 'https://graph.facebook.com/v5.0/me/messages',
+                  qs: { access_token: PAGE_ACCESS_TOKEN },
+                  method: 'POST',
+                  json: messageData
+
+                }, function (error, response, body) 
+                {
+                if(error) 
+                  {
+                  console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+                  }
+                }
+            );
+
+            var messageData = 
+          {
+              recipient: 
+                {
+                    id: recipientId
+                },
+               
                message: 
                {
                   text: "At any time, use the menu below to navigate through the features.",
@@ -113,7 +91,7 @@ app.post('/webhook', (req, res) => {
                     "payload":"<POSTBACK_PAYLOAD>",
                   }
                 ]
-                }*/
+                }
             };
 
            request(
