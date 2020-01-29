@@ -38,14 +38,12 @@ app.post('/webhook', (req, res) => {
 
 				  var messageData = 
           {
-					    recipient: 
-                {
-					          id: recipientId
-				        },
-               message:
-               {
-                  text: "Hi {{user_full_name}}  Welcome to MT Boxing Club where you can watch game or challenge the match.",
-               }
+					    "greeting":[
+  {
+    "locale":"default",
+    "text":"Hello {{user_first_name}}!"
+  }
+]
                /*
 		 	       	 message: 
                {
