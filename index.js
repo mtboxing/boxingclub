@@ -46,6 +46,7 @@ app.post('/webhook', (req, res) => {
                {
                   text: "Hi {{user_full_name}}  Welcome to MT Boxing Club where you can watch game or challenge the match.",
                }
+               /*
 		 	       	 message: 
                {
                   text: "At any time, use the menu below to navigate through the features.",
@@ -64,7 +65,7 @@ app.post('/webhook', (req, res) => {
                     "payload":"<POSTBACK_PAYLOAD>",
                   }
                 ]
-				        }
+				        }*/
 				    };
 
 					 request(
