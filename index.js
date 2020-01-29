@@ -37,11 +37,10 @@ app.post('/webhook', (req, res) => {
       		if(message.text=="Get Started" || message.title =="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
 
 				  
-           //var response1 = {text:"Hello"};
-           //var response2 = {text:"Welcome to MT Boxing Club"};
+           var response1 = {text:"Hello"};
+           var response2 = {text:"Welcome to MT Boxing Club"};
            var response3 = {           
                text: "At any time, use the menu below to navigate through the features.",
-               
                 "quick_replies":
                 [
                  {
@@ -58,6 +57,8 @@ app.post('/webhook', (req, res) => {
                 
             };
 
+            callSendAPI(recipientId, response1);
+            callSendAPI(recipientId, response2);
             callSendAPI(recipientId, response3);
              
       		}
@@ -94,7 +95,7 @@ function callSendAPI(sender_psid, response) {
 
   // Send the HTTP request to the Messenger Platform
   request({
-    "uri": "https://graph.facebook.com/v2.6/me/messages",
+    "uri": "https://graph.facebook.com/v5.0/me/messages",
     "qs": { "access_token": PAGE_ACCESS_TOKEN },
     "method": "POST",
     "json": request_body
