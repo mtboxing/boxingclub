@@ -196,7 +196,13 @@ app.get('/setpersistentmenu',function(req,res){
 
 function setupGetStartedButton(res){
         var messageData = {
-                "get_started":{"payload":"USER_DEFINED_PAYLOAD"}                
+                "get_started":{"payload":"USER_DEFINED_PAYLOAD"} ,
+                "greeting":[
+  {
+    "locale":"default",
+    "text":"Hello {{user_first_name}}!"
+  }
+]              
         };
         // Start the request
         request({
