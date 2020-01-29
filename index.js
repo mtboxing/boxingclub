@@ -97,7 +97,7 @@ function callSendAPI(sender_psid, response) {
   }
 
   // Send the HTTP request to the Messenger Platform
-  request({
+  return request({
     "uri": "https://graph.facebook.com/v2.6/me/messages",
     "qs": { "access_token": PAGE_ACCESS_TOKEN },
     "method": "POST",
@@ -110,7 +110,7 @@ function callSendAPI(sender_psid, response) {
       console.error("Unable to send message:" + err);
     }
   }); 
-  return 1;
+
 }
 
 // Adds support for GET requests to our webhook
