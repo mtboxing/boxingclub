@@ -61,7 +61,7 @@ app.post('/webhook', (req, res) => {
             callSendAPI(recipientId, response1).then(function(){
               return callSendAPI(recipientId, response2);
             }).then(function(){
-              eturn callSendAPI(recipientId, response3);
+              return callSendAPI(recipientId, response3);
             });
              
       		}
