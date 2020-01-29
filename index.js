@@ -47,12 +47,10 @@ app.post('/webhook', (req, res) => {
         "content_type":"text",
         "title":"Red",
         "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"http://example.com/img/red.png"
                   },{
         "content_type":"text",
         "title":"Green",
         "payload":"<POSTBACK_PAYLOAD>",
-        "image_url":"https://www.iconsdb.com/icons/preview/green/circle-xxl.png"
                   }
                 ]
 				        }
