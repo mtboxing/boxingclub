@@ -40,8 +40,7 @@ app.post('/webhook', (req, res) => {
            
             var response = {              
                
-               message: 
-               {
+               
                   text: "At any time, use the menu below to navigate through the features.",
 
                 //  metadata: "DEVELOPER_DEFINED_METADATA"  
@@ -58,7 +57,7 @@ app.post('/webhook', (req, res) => {
                     "payload":"<POSTBACK_PAYLOAD>",
                   }
                 ]
-                }
+                
             };
 
             callSendAPI(recipientId, response) 
