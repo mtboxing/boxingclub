@@ -6,6 +6,7 @@ const
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()); // creates express http server
 
+
 const request = require('request')
 var PAGE_ACCESS_TOKEN = 'EAAC6SKNTfKQBAGvL4kHxN3bSVOCOgW5uEQhrWtKFZBargc6cKeQrgZCrQCiZA5IH4Hqxa1TrkJ7BIfL15ATSIJ5mk47HcZBYBZAw3seZA9d3L7aYz5KdMYPIpZCGpjClWN0ZC41FerEyRV7p0msCrH2DbWhJD0Deyy5gufNqHd5mem17mZAmiFmVWh058ZAjlnZCdUZD'; 
 
@@ -37,20 +38,20 @@ app.post('/webhook', (req, res) => {
       		if(message.text=="Get Started" || message.title =="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
 
 				  
-           var response1 = {text:"Hello"};
-           var response2 = {text:"Welcome to MT Boxing Club"};
+           var response1 = {text:`Hello ${{{user_first_name}}}`};
+           var response2 = {text:"Welcome to MT Boxing Club where you can watch game or challenge the match"};
            var response3 = {           
                text: "At any time, use the menu below to navigate through the features.",
                 "quick_replies":
                 [
                  {
                     "content_type":"text",
-                    "title":"Red",
+                    "title":"Watch game",
                     "payload":"<POSTBACK_PAYLOAD>",
                   },
                   {
                     "content_type":"text",
-                    "title":"Green",
+                    "title":"Player Vs Player Challenge",
                     "payload":"<POSTBACK_PAYLOAD>",
                   }
                 ]

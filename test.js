@@ -1,0 +1,25 @@
+/*'use strict'
+const request = require('request');
+var PAGE_ACCESS_TOKEN = 'EAAC6SKNTfKQBAGvL4kHxN3bSVOCOgW5uEQhrWtKFZBargc6cKeQrgZCrQCiZA5IH4Hqxa1TrkJ7BIfL15ATSIJ5mk47HcZBYBZAw3seZA9d3L7aYz5KdMYPIpZCGpjClWN0ZC41FerEyRV7p0msCrH2DbWhJD0Deyy5gufNqHd5mem17mZAmiFmVWh058ZAjlnZCdUZD'; 
+
+var response1 = {text:"Hello"+name};
+const myapicall = (callback) =>{
+	console.log('ok');
+	request({'https://graph.facebook.com/v5.0/me?fields=id,name'+PAGE_ACCESS_TOKEN,
+        method: 'GET'
+    }, (err,req, res)=>{
+    	if(!err){
+    		let data ={
+    			"id": body.id,
+    			"name": body.name,
+    		};
+    		return data;
+    	}else
+    	{
+    		console.error("Error:"+ err);
+    	}
+
+});
+}
+
+module.exports.callapi = myapicall; */
