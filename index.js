@@ -37,16 +37,13 @@ app.post('/webhook', (req, res) => {
       		if(message.text=="Get Started" || message.title =="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
 
 				  var messageData = {
-            "greeting": [
-    {
-      "locale":"default",
-      "text":"Hello!" 
-    }, {
-      "locale":"en_US",
-      "text":"Timeless apparel for the masses."
-    }
-  ]
-            
+            "greeting":[
+  {
+    "locale":"default",
+    "text":"Hello {{user_first_name}}!"
+  }
+]
+
           }
           
                /*
