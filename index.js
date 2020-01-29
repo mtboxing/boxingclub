@@ -58,11 +58,12 @@ app.post('/webhook', (req, res) => {
                 
             };
 
-            callSendAPI(recipientId, response1).then(()=>{
-              callSendAPI(recipientId, response2).then(()=>{
-                callSendAPI(recipientId, response3);
-              });
-            }); 
+            callSendAPI(recipientId, response1).then(function(){
+              return callSendAPI(recipientId, response2);
+            }).then(function(){
+              eturn callSendAPI(recipientId, response3);
+            });
+             
       		}
       		else if(message.text=="")
           {
