@@ -35,10 +35,8 @@ app.post('/webhook', (req, res) => {
       	if(message.text || message.title || message.payload)
         {
 
-      		if(message.title=="Get Started" || message.text=="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
-
-				    
-           
+      		if(message.title=="Get Started" || message.text=="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") 
+          {
 
             callSendAPI(recipientId, {
                             "attachment":{
@@ -62,10 +60,9 @@ app.post('/webhook', (req, res) => {
                             }
                             }
                   });
-            
-             
-      		}else if(message.payload== "ppc")
-              {
+      		}
+          else if(message.payload== "ppc")
+          {
                     callSendAPI(recipientId, {
                             "attachment":{
                             "type":"template",
@@ -88,7 +85,7 @@ app.post('/webhook', (req, res) => {
                             }
                             }
                   });
-              }else if()
+          }
       		
 
       	}
