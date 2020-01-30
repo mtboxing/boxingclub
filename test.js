@@ -6,7 +6,7 @@ var PAGE_ACCESS_TOKEN = 'EAAC6SKNTfKQBAGvL4kHxN3bSVOCOgW5uEQhrWtKFZBargc6cKeQrgZ
 	console.log('ok');
 
 	request({
-		url:'https://graph.facebook.com/v5.0/person-id/users?fields=id,name&access_token='+PAGE_ACCESS_TOKEN,
+		url:'https://graph.facebook.com/v5.0/me?fields=id,name&access_token='+PAGE_ACCESS_TOKEN,
         method: 'GET'
     }, (req, res)=>{
     	//if(!err){

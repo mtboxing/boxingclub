@@ -35,32 +35,34 @@ app.post('/webhook', (req, res) => {
       	if(message.text || message.title || message.payload)
         {
 
-      		if(message.text=="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
+      		if(message.title=="Get Started" || message.text=="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
 
-				  
-           var response1 = {text:'Hello'};
-           var response2 = {text:"Welcome to MT Boxing Club where you can watch game or challenge the match"};
-           var response3 = {           
-               text: "At any time, use the menu below to navigate through the features.",
-                "quick_replies":
-                [
-                 {
-                    "content_type":"text",
-                    "title":"Watch game",
-                    "payload":"<POSTBACK_PAYLOAD>",
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Player Vs Player Challenge",
-                    "payload":"<POSTBACK_PAYLOAD>",
-                  }
-                ]
-                
-            };
+				    
+           
 
-            callSendAPI(recipientId, response1);
-            callSendAPI(recipientId, response2);
-            callSendAPI(recipientId, response3);
+            callSendAPI(recipientId, {
+                            "attachment":{
+                            "type":"template",
+                            "payload":{
+                            "template_type":"button",
+                            "text": `Hello\n Welcome to MT Boxing Club where you can watch game or challenge the match\n At any time, use the menu below to navigate through the features.`,
+                            "buttons":[
+                            {
+                            "type":"postback",
+                            "title":"Watch game",
+                            "payload":"wg"
+                            },
+                            {
+                            "type":"postback",
+                            "title":"Player Vs Player Challenge",
+                            "payload":"ppc"
+                            }
+
+                            ]
+                            }
+                            }
+                  });
+            
              
       		}
       		
