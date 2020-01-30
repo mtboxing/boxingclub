@@ -1,7 +1,7 @@
 'use strict';
 
 // Imports dependencies and set up http server
-
+const
   express = require('express'),
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()); // creates express http server
@@ -35,7 +35,7 @@ app.post('/webhook', (req, res) => {
       	if(message.text || message.title || message.payload)
         {
 
-      		if(message.text=="Get Started" || message.title =="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
+      		if(message.text=="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
 
 				  
            var response1 = {text:'Hello'};
@@ -63,10 +63,7 @@ app.post('/webhook', (req, res) => {
             callSendAPI(recipientId, response3);
              
       		}
-      		else if(message.text=="")
-          {
-
-      		}
+      		
 
       	}
 
