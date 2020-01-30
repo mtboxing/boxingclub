@@ -1,7 +1,7 @@
 'use strict';
 
 // Imports dependencies and set up http server
-const
+
   express = require('express'),
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()); // creates express http server
@@ -38,7 +38,7 @@ app.post('/webhook', (req, res) => {
       		if(message.text=="Get Started" || message.title =="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") {
 
 				  
-           var response1 = {text:`Hello ${{{user_first_name}}}`};
+           var response1 = {text:'Hello'};
            var response2 = {text:"Welcome to MT Boxing Club where you can watch game or challenge the match"};
            var response3 = {           
                text: "At any time, use the menu below to navigate through the features.",
