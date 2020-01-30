@@ -45,7 +45,7 @@ app.post('/webhook', (req, res) => {
                             "type":"template",
                             "payload":{
                             "template_type":"button",
-                            "text": `Hello\n Welcome to MT Boxing Club where you can watch game or challenge the match\n At any time, use the menu below to navigate through the features.`,
+                            "text": `Hello Username,\nWelcome to MT Boxing Club where you can watch game or challenge the match.\nAt any time, use the menu below to navigate through the features.`,
                             "buttons":[
                             {
                             "type":"postback",
@@ -88,7 +88,7 @@ app.post('/webhook', (req, res) => {
                             }
                             }
                   });
-              }
+              }else if()
       		
 
       	}
