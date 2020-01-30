@@ -35,7 +35,7 @@ app.post('/webhook', (req, res) => {
       	if(message.text || message.title || message.payload)
         {
 
-      		if(message.title=="Get Started" || message.text=="Get Started" || message.text=="HI" || message.text=="hi" || message.text=="Hi") 
+      		if(message.title=="Get Started" || message.text=="Get Started" || message.text=="Hello" || message.text=="hi" || message.text=="Hi") 
           {
 
             callSendAPI(recipientId, {
@@ -79,6 +79,31 @@ app.post('/webhook', (req, res) => {
                             "type":"postback",
                             "title":"No",
                             "payload":"regno"
+                            }
+
+                            ]
+                            }
+                            }
+                  });
+          }
+          else if(message.payload=="wg")
+          {
+                    callSendAPI(recipientId, {
+                            "attachment":{
+                            "type":"template",
+                            "payload":{
+                            "template_type":"button",
+                            "text": `To watch the game,\nPlease buy the ticket.\nggggg`,
+                            "buttons":[
+                            {
+                            "type":"postback",
+                            "title":"Book Ticket",
+                            "payload":"booking"
+                            },
+                            {
+                            "type":"postback",
+                            "title":"Buy Ticket",
+                            "payload":"buy"
                             }
 
                             ]
