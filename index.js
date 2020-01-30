@@ -54,7 +54,7 @@ app.post('/webhook', (req, res) => {
                             },
                             {
                             "type":"postback",
-                            "title":"Player Vs Player Challenge",
+                            "title":"P Vs P Challenge",
                             "payload":"ppc"
                             }
 
@@ -64,7 +64,31 @@ app.post('/webhook', (req, res) => {
                   });
             
              
-      		}
+      		}else if(message.payload== "ppc")
+              {
+                    callSendAPI(recipientId, {
+                            "attachment":{
+                            "type":"template",
+                            "payload":{
+                            "template_type":"button",
+                            "text": `Already Register?`,
+                            "buttons":[
+                            {
+                            "type":"postback",
+                            "title":"Yes",
+                            "payload":"regyes"
+                            },
+                            {
+                            "type":"postback",
+                            "title":"No",
+                            "payload":"regno"
+                            }
+
+                            ]
+                            }
+                            }
+                  });
+              }
       		
 
       	}
