@@ -13,6 +13,13 @@ var PAGE_ACCESS_TOKEN = 'EAAC6SKNTfKQBAGvL4kHxN3bSVOCOgW5uEQhrWtKFZBargc6cKeQrgZ
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 1337, () => console.log('webhook is listening'));
 
+app.use(express.static('public'));
+
+// herokulink/register
+app.get('/register', (req,res)=>{
+  res.sendFile('./public/register.html')
+})
+
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
  
@@ -63,28 +70,61 @@ app.post('/webhook', (req, res) => {
       		}
           else if(message.payload== "ppc")
           {
-                    callSendAPI(recipientId, {
-                            "attachment":{
-                            "type":"template",
-                            "payload":{
-                            "template_type":"button",
-                            "text": `Already Register?`,
-                            "buttons":[
+              callSendAPI(recipientId,{
+                "attachment":{
+                    "type":"template",
+                    "payload":{
+                      "template_type":"generic",
+                      "elements":[
+                         {
+                          "title":"Do you have your account!",
+                          "image_url":" ",  //image url here
+                          "subtitle":"Before fight, register your account first. Click here to register",
+                          "default_action": {
+                            "type": "web_url",
+                            "url": "https://mtboxing.herokuapp.com/register",
+                            "webview_height_ratio": "tall",
+                          },
+                          "buttons":[
                             {
-                            "type":"postback",
-                            "title":"Yes",
-                            "payload":"regyes"
-                            },
-                            {
-                            "type":"postback",
-                            "title":"No",
-                            "payload":"regno"
-                            }
+                              "type":"web_url",
+                              "url":"https://mtboxing.herokuapp.com/register",
+                              "title":"No"
+                            },{
+                              "type":"postback",
+                              "title":"Yes",
+                              "payload":"regyes"
+                            }              
+                          ]      
+                        }
+                      ]
+                    }
+                  }
+              })
+                  //   callSendAPI(recipientId, {
+                  //           "attachment":{
+                  //           "type":"template",
+                  //           "payload":{
+                  //           "template_type":"button",
+                  //           "text": `Already Register?`,
+                  //           "buttons":[
+                  //           {
+                  //           "type":"postback",
+                  //           "title":"Yes",
+                  //           "payload":"regyes"
+                  //           },
+                  //           {
+                  //           "type":"postback",
+                  //           "title":"No",
+                  //           "payload":"regno"
+                  //           }
 
-                            ]
-                            }
-                            }
-                  });
+                  //           ]
+                  //           }
+                  //           }
+                  // });
+
+
           }
           else if(message.payload=="wg")
           {
