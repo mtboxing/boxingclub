@@ -70,7 +70,7 @@ app.post('/webhook', (req, res) => {
       		}
           else if(message.payload== "ppc")
           {
-              callSendAPI(recipientId,{
+              callSendAPI(recipientId, {
                 "attachment":{
                     "type":"template",
                     "payload":{
@@ -78,7 +78,7 @@ app.post('/webhook', (req, res) => {
                       "elements":[
                          {
                           "title":"Do you have your account!",
-                          "image_url":" ",  //image url here
+                          "image_url":"https://i.pinimg.com/originals/51/9b/cf/519bcfc9e1404745e9e0f63a4c15c623.jpg",  
                           "subtitle":"Before fight, register your account first. Click here to register",
                           "default_action": {
                             "type": "web_url",
