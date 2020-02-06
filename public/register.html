@@ -1,9 +1,66 @@
+<!DOCTYPE html>
 <html>
+
 <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Fighter</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+    <link rel="stylesheet" href="assets/css/Login-Animate.css">
+    <link rel="stylesheet" href="assets/css/nav.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
 </head>
-<body>
-    <p>What is your name</p>
-    <p>Change here</p>
+
+<body style="background-color:#ffffff;">
+    <nav class="navbar navbar-light navbar-expand-md sticky-top navigation-clean-search" style="background-color:rgb(156,156,156);">
+        <div class="container">
+            <a class="navbar-brand" href="home.html"><img src="assets/img/logo.png" style="width:50px;">MT Boxing Club</a>
+            
+        </div>
+    </nav>
+
+
+    <div data-aos="fade-down" data-aos-duration="1000" data-aos-delay="100" data-aos-once="true" class="login-card" style="font-family:Roboto, sans-serif;max-width:450px;">
+
+        <p class="profile-name-card" style="font-size:22px;">Welcome to Registration</p>
+        
+        <form class="form-signin">
+        <span class="reauth-email" style="margin:11px;"> </span>
+
+        <input class="form-control" type="text" required="" placeholder="Full name" autofocus="">
+
+        <input class="form-control" type="text" name="age" required="" placeholder="Age">
+
+        <select class="form-control" style="margin-bottom:10px;">
+            <option value="" selected="">Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <input class="form-control" type="text" required="" placeholder="Height">
+
+        <input class="form-control" type="text" required="" placeholder="Weight">
+
+        <button class="btn btn-primary btn-block btn-lg btn-signin" type="submit" style="font-family:Roboto, sans-serif;font-size:16px;font-weight:normal;font-style:normal;">Submit</button>
+        <button class="btn btn-primary btn-block btn-lg btn-signin" type="submit" style="font-family:Roboto, sans-serif;font-size:16px;font-weight:normal;font-style:normal;">Cancel</button>
+        </form>
+    </div>
+
+
+    <div class="footer-basic" style="background-color:rgb(126,143,146);height:130px;">
+        <footer>
+            <div class="social" style="margin-top:-30px;height:82px;background-color:transparent;"><a href="#"><i class="icon ion-social-facebook"></i></a>
+                <p class="copyright" style="font-size:17px;padding-right:0px;padding-top:0px;color:rgb(0,0,0);">MT Boxing Club © 2020</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
 </body>
+
 </html>
