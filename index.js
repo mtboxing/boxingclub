@@ -45,7 +45,7 @@ app.post('/webhook', (req, res) => {
       		if(message.title=="Get Started" || message.text=="Get Started" || message.text=="Hello" || message.text=="hi" || message.text=="Hi") 
           {
 
-              const _EXTERNAL_URL = 'https://graph.facebook.com/'+recipientId+'?fields=first_name,last_name,profile_pic&access_token='+ ;
+              const _EXTERNAL_URL = 'https://graph.facebook.com/'+recipientId+'?fields=first_name,last_name&access_token='+ PAGE_ACCESS_TOKEN ;
               const callExternalApiUsingRequest = (callback) => {
                   request(_EXTERNAL_URL, { json: true }, (err, res, body) => {
                   if (err) { 
