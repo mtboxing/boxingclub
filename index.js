@@ -17,7 +17,7 @@ app.use(express.static('public'));
 
 // herokulink/register
 app.get('/register', (req,res)=>{
-  res.sendFile('./public/register.html')
+  res.sendFile(__dirname + '/public/register.html')
 })
 
 // Creates the endpoint for our webhook 
