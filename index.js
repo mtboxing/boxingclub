@@ -61,7 +61,7 @@ app.post('/webhook', (req, res) => {
 
                  callExternalApiUsingRequest((res)=>{
                   
-                    let name = res.first_name +res.last_name;
+                    let name = res.first_name +' '+res.last_name;
                     callSendAPI(recipientId, {
                             "attachment":{
                             "type":"template",
