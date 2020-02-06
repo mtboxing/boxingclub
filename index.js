@@ -67,7 +67,7 @@ app.post('/webhook', (req, res) => {
                             "type":"template",
                             "payload":{
                             "template_type":"button",
-                            "text": ` Hello ${name},\nWelcome to MT Boxing Club where you can watch game or challenge the match.\nAt any time, use the menu below to navigate through the features.`,
+                            "text": ` Hi ${name}. I am a bot to help you,\nWelcome to MT Boxing Club where you can watch game or challenge the match.\nAt any time, use the menu below to navigate through the features.`,
                             "buttons":[
                             {
                             "type":"postback",
