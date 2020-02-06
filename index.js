@@ -45,12 +45,29 @@ app.post('/webhook', (req, res) => {
       		if(message.title=="Get Started" || message.text=="Get Started" || message.text=="Hello" || message.text=="hi" || message.text=="Hi") 
           {
 
-            callSendAPI(recipientId, {
+              const _EXTERNAL_URL = 'https://graph.facebook.com/'+recipientId+'?fields=first_name,last_name,profile_pic&access_token='+ ;
+              const callExternalApiUsingRequest = (callback) => {
+                  request(_EXTERNAL_URL, { json: true }, (err, res, body) => {
+                  if (err) { 
+                      console.log(err);
+                      return callback(err);
+                      
+                   }
+                   //console.log("ok");
+                  return callback(body);
+                  
+                  });
+                }
+
+                 callExternalApiUsingRequest((res)=>{
+                  
+                    let name = res.first_name;
+                    callSendAPI(recipientId, {
                             "attachment":{
                             "type":"template",
                             "payload":{
                             "template_type":"button",
-                            "text": `Hello Username,\nWelcome to MT Boxing Club where you can watch game or challenge the match.\nAt any time, use the menu below to navigate through the features.`,
+                            "text": ` Hello ${name},\nWelcome to MT Boxing Club where you can watch game or challenge the match.\nAt any time, use the menu below to navigate through the features.`,
                             "buttons":[
                             {
                             "type":"postback",
@@ -67,6 +84,12 @@ app.post('/webhook', (req, res) => {
                             }
                             }
                   });
+                  
+                   
+                })
+
+
+           
       		}
           else if(message.payload== "ppc")
           {
@@ -79,7 +102,7 @@ app.post('/webhook', (req, res) => {
                          {
                           "title":"Do you have your account!",
                           "image_url":"https://i.pinimg.com/originals/51/9b/cf/519bcfc9e1404745e9e0f63a4c15c623.jpg",  
-                          "subtitle":"Before fight, register your account first. Click here to register",
+                          "subtitle":"Before challenge to anyone,  Click here to register",
                           "default_action": {
                             "type": "web_url",
                             "url": "https://mtboxing.herokuapp.com/register",
@@ -89,10 +112,10 @@ app.post('/webhook', (req, res) => {
                             {
                               "type":"web_url",
                               "url":"https://mtboxing.herokuapp.com/register",
-                              "title":"No"
+                              "title":"Let's register"
                             },{
                               "type":"postback",
-                              "title":"Yes",
+                              "title":"Already have an account.",
                               "payload":"regyes"
                             }              
                           ]      
