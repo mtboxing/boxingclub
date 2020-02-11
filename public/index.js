@@ -21,16 +21,16 @@ function test(){
 
 	var username = document.getElementById('username').value
 	var age = document.getElementById('age').value
-	var gender = document.getElementById('gender').value
-	var height = document.getElementById('height').value
-	var weight = document.getElementById('weight').value
+	//var gender = document.getElementById('gender').value
+	//var height = document.getElementById('height').value
+	//var weight = document.getElementById('weight').value
 
 		db.collection("users").add({
 		    Name: `${username}`,
-		    Age: `${age}`,
-		    Gender: `${gender}`,
-		    Height: `${height}`,
-		    Weight: `${weight}`
+		    Age: `${age}`
+		    //Gender: `${gender}`,
+		    //Height: `${height}`,
+		    //Weight: `${weight}`
 		})
 		.then(function(docRef) {
 		    console.log("Document written with ID: ", docRef.id);
