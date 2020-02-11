@@ -5,7 +5,16 @@ const
   express = require('express'),
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()); // creates express http server
+const admin = require('firebase-admin');
+const functions = require('firebase-functions');
 
+let serviceAccount = require('path/to/serviceAccountKey.json');
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)
+});
+
+const db = admin.firestore();
 
 const request = require('request')
 var PAGE_ACCESS_TOKEN = 'EAAC6SKNTfKQBAGvL4kHxN3bSVOCOgW5uEQhrWtKFZBargc6cKeQrgZCrQCiZA5IH4Hqxa1TrkJ7BIfL15ATSIJ5mk47HcZBYBZAw3seZA9d3L7aYz5KdMYPIpZCGpjClWN0ZC41FerEyRV7p0msCrH2DbWhJD0Deyy5gufNqHd5mem17mZAmiFmVWh058ZAjlnZCdUZD'; 
@@ -124,28 +133,6 @@ app.post('/webhook', (req, res) => {
                     }
                   }
               })
-                  //   callSendAPI(recipientId, {
-                  //           "attachment":{
-                  //           "type":"template",
-                  //           "payload":{
-                  //           "template_type":"button",
-                  //           "text": `Already Register?`,
-                  //           "buttons":[
-                  //           {
-                  //           "type":"postback",
-                  //           "title":"Yes",
-                  //           "payload":"regyes"
-                  //           },
-                  //           {
-                  //           "type":"postback",
-                  //           "title":"No",
-                  //           "payload":"regno"
-                  //           }
-
-                  //           ]
-                  //           }
-                  //           }
-                  // });
 
 
           }
@@ -320,8 +307,8 @@ function setupPersistentMenu(res){
                       },
                       {
                         "type":"web_url",
-                        "title":"Visit website ",
-                        "url":"http://www.google.com",
+                        "title":"Player Register",
+                        "url":"https://mtboxing.herokuapp.com/register",
                         "webview_height_ratio":"full"
                     }
                 ]
