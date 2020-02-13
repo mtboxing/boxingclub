@@ -293,7 +293,8 @@ function setupPersistentMenu(res){
                 {
                   "locale":"default",
                   "composer_input_disabled":false,
-                  "call_to_actions":[
+                  "call_to_actions":
+                [
                       {
                         "title":"Info",
                         "type":"nested",
@@ -315,7 +316,7 @@ function setupPersistentMenu(res){
                         "title":"Player Register",
                         "url":"https://mtboxing.herokuapp.com/register",
                         "webview_height_ratio":"full"
-                    }
+                      }
                 ]
             },
             {
