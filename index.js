@@ -296,11 +296,12 @@ function setupPersistentMenu(res){
                   "call_to_actions":
                 [
                       {
-                        "title":"Info",
+                        "title":"Information",
                         "type":"nested",
-                        "call_to_actions":[
+                        "call_to_actions":
+                        [
                             {
-                              "title":"Help",
+                              "title":"Helps",
                               "type":"postback",
                               "payload":"HELP_PAYLOAD"
                             },
@@ -323,10 +324,6 @@ function setupPersistentMenu(res){
                         "payload": "CURATION"
                       }
                 ]
-            },
-            {
-              "locale":"zh_CN",
-              "composer_input_disabled":false
             }
           ]          
         };
