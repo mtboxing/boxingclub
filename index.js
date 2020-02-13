@@ -87,11 +87,6 @@ app.post('/webhook', (req, res) => {
                             "type":"postback",
                             "title":"P Vs P Challenge",
                             "payload":"ppc"
-                            },
-                            {
-                            "type":"postback",
-                            "title":"Profile",
-                            "payload":"ppc"
                             }
 
                             ]
