@@ -312,10 +312,15 @@ function setupPersistentMenu(res){
                         ]
                       },
                       {
-                        "type":"web_url",
                         "title":"Player Register",
+                        "type":"web_url",
                         "url":"https://mtboxing.herokuapp.com/register",
                         "webview_height_ratio":"full"
+                      },
+                      {
+                        "type": "postback",
+                        "title": "Outfit suggestions",
+                        "payload": "CURATION"
                       }
                 ]
             },
