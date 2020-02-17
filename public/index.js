@@ -25,10 +25,10 @@ function test(){
 	var height = document.getElementById('height').value
 	var weight = document.getElementById('weight').value
 
-	
+
 		db.collection("users").add({
 		    Name: `${username}`,
-		    Age: `${age}`
+		    Age: `${age}`,
 		    Gender: `${gender}`,
 		    Height: `${height}`,
 		    Weight: `${weight}`
