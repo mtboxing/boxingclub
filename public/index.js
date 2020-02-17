@@ -24,7 +24,7 @@ function test(){
 	var gender = document.getElementById('gender').value;
 	var height = document.getElementById('height').value;
 	var weight = document.getElementById('weight').value;
-	//console.log("hi", username, age, gender, height,weight)
+	console.log("hi", username, age, gender, height,weight)
 
 		db.collection('users').doc().set({
 		    Name: `${username}`,
@@ -35,20 +35,14 @@ function test(){
 		})
 		.then(function(docRef) {
 		    console.log("Document written with ID");
-<<<<<<< HEAD
+
 		   
 		})
 		.catch(function(error) {
 		    console.error("Error adding document: ", error);
 		
 		});
-=======
-		    alret("Ok")
-		})
-		.catch(function(error) {
-		    console.error("Error adding document: ", error);
-		    alret(`err ${error}`)
-		});;
->>>>>>> fb778789ef3f976e48f6a0a4fc827385327060e3
+
+
 
 }
