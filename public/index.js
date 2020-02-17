@@ -26,7 +26,7 @@ function test(){
 	var weight = document.getElementById('weight').value;
 	alert(height+ '' +weight);
 
-		db.collection("users").add({
+		db.collection('users').add({
 		    Name: username,
 		    Age: age,
 		    Gender: gender,
