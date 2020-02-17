@@ -18,15 +18,15 @@
 var db = firebase.firestore();
 
 function test(){
-
+	//console.log("hi")
 	var username = document.getElementById('username').value;
 	var age = document.getElementById('age').value;
 	var gender = document.getElementById('gender').value;
 	var height = document.getElementById('height').value;
 	var weight = document.getElementById('weight').value;
-	alert(height+ '' +weight);
+	//console.log("hi", username, age, gender, height,weight)
 
-		db.collection('users').add({
+		db.collection('users').doc().set({
 		    Name: username,
 		    Age: age,
 		    Gender: gender,
@@ -34,7 +34,7 @@ function test(){
 		    Weight: weight
 		})
 		.then(function(docRef) {
-		    console.log("Document written with ID: ", docRef.id);
+		    console.log("Document written with ID");
 		})
 		.catch(function(error) {
 		    console.error("Error adding document: ", error);
