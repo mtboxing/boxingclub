@@ -27,17 +27,19 @@ function test(){
 	//console.log("hi", username, age, gender, height,weight)
 
 		db.collection('users').doc().set({
-		    Name: username,
-		    Age: age,
-		    Gender: gender,
-		    Height: height,
-		    Weight: weight
+		    Name: `${username}`,
+		    Age: `${age}`,
+		    Gender: `${gender}`,
+		    Height: `${height}`,
+		    Weight: `${weight}`
 		})
 		.then(function(docRef) {
 		    console.log("Document written with ID");
+		   
 		})
 		.catch(function(error) {
 		    console.error("Error adding document: ", error);
+		
 		});
 
 }
