@@ -35,9 +35,11 @@ function test(){
 		})
 		.then(function(docRef) {
 		    console.log("Document written with ID");
+		    alret("Ok")
 		})
 		.catch(function(error) {
 		    console.error("Error adding document: ", error);
-		});
+		    alret(`err ${error}`)
+		});;
 
 }
