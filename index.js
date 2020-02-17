@@ -6,7 +6,6 @@ const
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()); // creates express http server
 const admin = require('firebase-admin');
-const functions = require('firebase-functions');
 
 let serviceAccount = require('./serviceAccountKey.json');
 
