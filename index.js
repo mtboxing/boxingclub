@@ -235,7 +235,7 @@ app.get('/webhook', (req, res) => {
       res.sendStatus(403);      
     }
   }
-});
+});//end of get webhook
 
 
 app.get('/',(req,res)=>{
@@ -256,8 +256,8 @@ function setupGetStartedButton(res){
                 "greeting":[
   {
     "locale":"default",
-    "text":"Hello {{user_full_name}}!"
-  }
+    "text":"Hello {{user_full_name}}! Thanks for choosing our platform."
+  } 
 ]              
         };
         // Start the request
@@ -289,24 +289,12 @@ function setupPersistentMenu(res){
                   "composer_input_disabled":false,
                   "call_to_actions":
                 [
-                      {
-                        "title":"Information",
-                        "type":"nested",
-                        "call_to_actions":
-                        [
-                            {
-                              "title":"Helps",
-                              "type":"postback",
-                              "payload":"HELP_PAYLOAD"
-                            },
-                            {
-                              "title":"Contact Me",
-                              "type":"postback",
-                              "payload":"CONTACT_INFO_PAYLOAD"
-                            }
-                        ]
-                      },
-                      {
+                    {
+                      "type": "postback",
+                      "title": "Talk to an agent",
+                      "payload": "CARE_HELP"                        
+                     },
+                     {
                         "title":"Player Register",
                         "type":"web_url",
                         "url":"https://mtboxing.herokuapp.com/register",

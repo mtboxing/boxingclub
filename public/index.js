@@ -17,6 +17,12 @@
 
 var db = firebase.firestore();
 
+
+
+
+
+
+
 function test(){
 	//console.log("hi")
 	var username = document.getElementById('username').value;
@@ -42,7 +48,5 @@ function test(){
 		    console.error("Error adding document: ", error);
 		
 		});
-
-
 
 }
