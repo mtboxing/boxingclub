@@ -165,7 +165,7 @@ app.post('/webhook', (req, res) => {
                         {
                           "type":"postback",
                           "title":"Cancel",
-                          "payload":"challenge"
+                          "payload":"Challenge"
                         }              
                       ]      
                     },
