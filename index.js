@@ -49,7 +49,7 @@ app.post('/webhook', (req, res) => {
 
       	if(message.text || message.title || message.payload)
         {
-
+        //get started
       		if(message.title=="Get Started" || message.text=="Get Started" || message.text=="Hello" || message.text=="hi" || message.text=="Hi") 
           {
 
@@ -75,99 +75,65 @@ app.post('/webhook', (req, res) => {
                             "type":"template",
                             "payload":{
                             "template_type":"button",
-                            "text": ` Hi ${name}. I am a bot to help you,\nWelcome to MT Boxing Club where you can watch game or challenge the match.\nAt any time, use the menu below to navigate through the features.`,
-                            "buttons":[
-                            {
-                            "type":"postback",
-                            "title":"Watch game",
-                            "payload":"wg"
-                            },
-                            {
-                            "type":"postback",
-                            "title":"P Vs P Challenge",
-                            "payload":"ppc"
-                            }
-
+                            "text": ` Hi ${name}. I am a bot to help you,\nWelcome to MT Boxing Club where you can challenge the match.\nAt any time, use the menu below to navigate through the features.`,
+                            "buttons":
+                            [
+                              {
+                              "type":"postback",
+                              "title":"Challenge",
+                              "payload":"Challenge"
+                              },
+                              {
+                              "type":"postback",
+                              "title":"Learn to Box",
+                              "payload":"Learn_to_Box"
+                              }
                             ]
-                            }
+                          }
                             }
                   });
                   
                    
-                })
+                })//end of callExternalApiUsingRequest
 
 
            
-      		}
-          else if(message.payload== "ppc")
+      		}//end of get started
+          
+      		else if(message.payload== "Challenge" || userInput =="Challenge")
           {
-              callSendAPI(recipientId, {
-                "attachment":{
-                    "type":"template",
-                    "payload":{
-                      "template_type":"generic",
-                      "elements":[
-                         {
-                          "title":"Do you have your account!",
-                          "image_url":"https://i.pinimg.com/originals/51/9b/cf/519bcfc9e1404745e9e0f63a4c15c623.jpg",  
-                          "subtitle":"Before challenge to anyone,  Click here to register",
-                          "default_action": {
-                            "type": "web_url",
-                            "url": "https://mtboxing.herokuapp.com/register",
-                            "webview_height_ratio": "tall",
-                          },
-                          "buttons":[
-                            {
-                              "type":"web_url",
-                              "url":"https://mtboxing.herokuapp.com/register",
-                              "title":"Let's register"
-                            },{
-                              "type":"postback",
-                              "title":"Already have an account.",
-                              "payload":"regyes"
-                            }              
-                          ]      
-                        }
-                      ]
+            callSendAPI(recipientId,{
+
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"button",
+                  "text": `You can challenge the game,\nPlease, make sure you choose the right decision.`,
+                  "buttons":
+                  [
+                    {
+                      "type":"postback",
+                      "title":"Challenge Now",
+                      "payload":"challenge_now"
+                    },
+                    {
+                    "type":"postback",
+                    "title":"Challenge Later",
+                    "payload":"challenge_later"
+                    },
+                    {
+                    "type":"postback",
+                    "title":"Got Challenge",
+                    "payload":"got_challenge"
                     }
-                  }
-              })
-
-
-          }
-          else if(message.payload=="wg")
-          {
-                    callSendAPI(recipientId, {
-                            "attachment":{
-                            "type":"template",
-                            "payload":{
-                            "template_type":"button",
-                            "text": `To watch the game,\nPlease buy the ticket.\nggggg`,
-                            "buttons":[
-                            {
-                            "type":"postback",
-                            "title":"Find Match",
-                            "payload":"fimatch"
-                            },
-                            {
-                            "type":"postback",
-                            "title":"View my ticket order",
-                            "payload":"viorder"
-                            }
-
-                            ]
-                            }
-                            }
-                  });
-          }
-          else if(message.payload=="fimatch")
-          {
-            
-          }
-      		
+                  ]
+                }
+              }
+            });
+          }//end of challenge button
 
       	}
-
+//end of main function
       
 
 
@@ -291,8 +257,8 @@ function setupPersistentMenu(res){
                 [
                     {
                       "type": "postback",
-                      "title": "Talk to an agent",
-                      "payload": "CARE_HELP"                        
+                      "title": "Learn to Box",
+                      "payload": "Learn to Box"                        
                      },
                      {
                         "title":"Player Register",
@@ -302,7 +268,7 @@ function setupPersistentMenu(res){
                       },
                       {
                         "type": "postback",
-                        "title": "Outfit suggestions",
+                        "title": "",
                         "payload": "CURATION"
                       }
                 ]
