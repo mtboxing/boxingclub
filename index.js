@@ -100,7 +100,7 @@ app.post('/webhook', (req, res) => {
            
       		}//end of get started
           
-      		else if(message.payload== "Challenge")
+      		else if(message.payload== "Challenge" || message.text=="Challenge")
           {
             callSendAPI(recipientId,{
               "attachment":{
@@ -132,7 +132,7 @@ app.post('/webhook', (req, res) => {
           }//end of challenge button
 
 
-          else if(message.payload == "challenge_now")
+          else if(message.payload == "challenge_now" || message.text=="challenge_now")
           {
             callSendAPI(recipientId,{
               "attachment":{
@@ -155,10 +155,29 @@ app.post('/webhook', (req, res) => {
                         {
                           "type":"postback",
                           "title":"Cancel",
-                          "payload":"cancel"
+                          "payload":"challenge"
+                        }              
+                      ]      
+                    },
+                    {
+                      "title":"Username2",
+                      "image_url":"https://i.pinimg.com/originals/51/9b/cf/519bcfc9e1404745e9e0f63a4c15c623.jpg",  
+                      "subtitle":"If you want to challenge that person, you can send challenge now.",
+                      "buttons":
+                      [
+                        {
+                          "type":"postback",
+                          "title":"Send Challenge",
+                          "payload":"send_challenge"
+                        },
+                        {
+                          "type":"postback",
+                          "title":"Cancel",
+                          "payload":"challenge"
                         }              
                       ]      
                     }
+
                   ]
                 }
               }
