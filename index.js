@@ -139,6 +139,7 @@ app.post('/webhook', (req, res) => {
                 "type":"template",
                 "payload":{
                 "template_type":"generic",
+                "text": `You can challenge the game,\nPlease, make sure you choose the right decision.`,
                 "elements":
                   [
                     {
@@ -173,7 +174,7 @@ app.post('/webhook', (req, res) => {
                         {
                           "type":"postback",
                           "title":"Cancel",
-                          "payload":"challenge"
+                          "payload":"Challenge"
                         }              
                       ]      
                     }
