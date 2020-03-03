@@ -210,10 +210,7 @@ app.post('/webhook', (req, res) => {
           else if(message.payload == "send_challenge")
           {
             callSendAPI(recipientId,{
-
-                  "message": 
-                  { "text": "You have challenged to the Username. Please wait for the confirmation. We will notify you if the Username is confirm." }
-                
+              "text": "You have challenged to the Username. Please wait for the confirmation. We will notify you if the Username is confirm."
             }); 
           }//end of wait for accept
 
@@ -248,7 +245,7 @@ function callSendAPI(sender_psid, response) {
 
   // Send the HTTP request to the Messenger Platform
   request({
-    "uri": "https://graph.facebook.com/v5.0/me/messages",
+    "uri": "https://graph.facebook.com/v6.0/me/messages",
     "qs": { "access_token": PAGE_ACCESS_TOKEN },
     "method": "POST",
     "json": request_body
