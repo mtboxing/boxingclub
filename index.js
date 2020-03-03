@@ -215,15 +215,10 @@ app.post('/webhook', (req, res) => {
           else if (message.text == "abcd")
           {
             callSendAPI(recipientId,{
- "attachment":
- {
-  "type":"template",
-  "payload":{
-  "template_type":"button",
-  "text": "This is available boxer you can challenge now."
-    }
+            "message":{
+    "text":"hello, world!"
   }
-});
+          });
           }
       	}
 //end of main function
