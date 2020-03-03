@@ -100,7 +100,7 @@ app.post('/webhook', (req, res) => {
            
       		}//end of get started
           
-      		else if(message.payload== "Challenge" || userInput =="Challenge")
+      		else if(message.payload== "Challenge")
           {
             callSendAPI(recipientId,{
               "attachment":{
@@ -132,7 +132,7 @@ app.post('/webhook', (req, res) => {
           }//end of challenge button
 
 
-          else if(message.postback.payload == "challenge_now")
+          else if(message.payload == "challenge_now")
           {
             callSendAPI(recipientId,{
               "attachment":{
