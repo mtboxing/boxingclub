@@ -137,9 +137,18 @@ app.post('/webhook', (req, res) => {
             callSendAPI(recipientId,{
               "attachment":{
                 "type":"template",
+                "payload":
+                {
+                "template_type":"button",
+                "text": "This is available boxer you can challenge now.",
+                }
+              }
+            });
+            callSendAPI(recipientId,{
+              "attachment":{
+                "type":"template",
                 "payload":{
                 "template_type":"generic",
-                "text": `You can challenge the game,\nPlease, make sure you choose the right decision.`,
                 "elements":
                   [
                     {

@@ -94,3 +94,15 @@ else if(message.payload=="wg")
                   });
           }
 //end of watch game
+
+
+callSendAPI(recipientId,{
+ "attachment":
+ {
+  "type":"template",
+  "payload":{
+  "template_type":"button",
+  "text": "This is available boxer you can challenge now.",
+    }
+  }
+});
