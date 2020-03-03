@@ -211,6 +211,20 @@ app.post('/webhook', (req, res) => {
               }
             });
           }//end of view available boxer
+
+          else if (message.text == "abcd")
+          {
+            callSendAPI(recipientId,{
+ "attachment":
+ {
+  "type":"template",
+  "payload":{
+  "template_type":"button",
+  "text": "This is available boxer you can challenge now."
+    }
+  }
+});
+          }
       	}
 //end of main function
       
