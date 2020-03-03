@@ -96,7 +96,7 @@ else if(message.payload=="wg")
 //end of watch game
 
 
-callSendAPI(recipientId,{
+/*callSendAPI(recipientId,{
  "attachment":
  {
   "type":"template",
@@ -105,4 +105,4 @@ callSendAPI(recipientId,{
   "text": "This is available boxer you can challenge now.",
     }
   }
-});
+}); */

@@ -134,66 +134,83 @@ app.post('/webhook', (req, res) => {
 
           else if(message.payload == "challenge_now" || message.text=="Challenge Now")
           {
-            callSendAPI(recipientId,{
-              "attachment":{
-                "type":"template",
-                "payload":
-                {
-                "template_type":"button",
-                "text": "This is available boxer you can challenge now.",
+            let request_body = {
+              "recipient": {
+                "id": recipientId
+              },
+              "message": {
+                "attachment":{
+                  "type":"template",
+                  "payload":
+                  {
+                  "template_type":"button",
+                  "text": "This is available boxer you can challenge now.",
+                  }
                 }
               }
-            });
-            callSendAPI(recipientId,{
-              "attachment":{
-                "type":"template",
-                "payload":{
-                "template_type":"generic",
-                "elements":
-                  [
-                    {
-                      "title":"Username",
-                      "image_url":"https://i.pinimg.com/originals/51/9b/cf/519bcfc9e1404745e9e0f63a4c15c623.jpg",  
-                      "subtitle":"If you want to challenge that person, you can send challenge now.",
-                      "buttons":
-                      [
-                        {
-                          "type":"postback",
-                          "title":"Send Challenge",
-                          "payload":"send_challenge"
-                        },
-                        {
-                          "type":"postback",
-                          "title":"Cancel",
-                          "payload":"Challenge"
-                        }              
-                      ]      
-                    },
-                    {
-                      "title":"Username2",
-                      "image_url":"https://i.pinimg.com/originals/51/9b/cf/519bcfc9e1404745e9e0f63a4c15c623.jpg",  
-                      "subtitle":"If you want to challenge that person, you can send challenge now.",
-                      "buttons":
-                      [
-                        {
-                          "type":"postback",
-                          "title":"Send Challenge",
-                          "payload":"send_challenge"
-                        },
-                        {
-                          "type":"postback",
-                          "title":"Cancel",
-                          "payload":"Challenge"
-                        }              
-                      ]      
-                    }
+            }
 
-                  ]
-                }
+            // Send the HTTP request to the Messenger Platform
+            request({
+              "uri": "https://graph.facebook.com/v5.0/me/messages",
+              "qs": { "access_token": PAGE_ACCESS_TOKEN },
+              "method": "POST",
+              "json": request_body
+            }, (err, res, body) => {
+              if (!err) {
+                callSendAPI(recipientId,{
+                  "attachment":{
+                    "type":"template",
+                    "payload":{
+                    "template_type":"generic",
+                    "elements":
+                      [
+                        {
+                          "title":"Username",
+                          "image_url":"https://i.pinimg.com/originals/51/9b/cf/519bcfc9e1404745e9e0f63a4c15c623.jpg",  
+                          "subtitle":"If you want to challenge that person, you can send challenge now.",
+                          "buttons":
+                          [
+                            {
+                              "type":"postback",
+                              "title":"Send Challenge",
+                              "payload":"send_challenge"
+                            },
+                            {
+                              "type":"postback",
+                              "title":"Cancel",
+                              "payload":"Challenge"
+                            }              
+                          ]      
+                        },
+                        {
+                          "title":"Username2",
+                          "image_url":"https://i.pinimg.com/originals/51/9b/cf/519bcfc9e1404745e9e0f63a4c15c623.jpg",  
+                          "subtitle":"If you want to challenge that person, you can send challenge now.",
+                          "buttons":
+                          [
+                            {
+                              "type":"postback",
+                              "title":"Send Challenge",
+                              "payload":"send_challenge"
+                            },
+                            {
+                              "type":"postback",
+                              "title":"Cancel",
+                              "payload":"Challenge"
+                            }              
+                          ]      
+                        }
+
+                      ]
+                    }
+                  }
+                });
+              } else {
+                console.error("Unable to send message:" + err);
               }
             });
           }//end of view available boxer
-
       	}
 //end of main function
       
