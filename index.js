@@ -144,7 +144,7 @@ app.post('/webhook', (req, res) => {
                   "payload":
                   {
                   "template_type":"button",
-                  "text": "This is available boxer you can challenge now.",
+                  "text": "This is available boxer you can challenge now."
                   }
                 }
               }

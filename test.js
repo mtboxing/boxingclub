@@ -106,3 +106,7 @@ else if(message.payload=="wg")
     }
   }
 }); */
+
+"message":{
+    "text":"hello, world!"
+  }
