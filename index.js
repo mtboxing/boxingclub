@@ -138,12 +138,12 @@ app.post('/webhook', (req, res) => {
               "attachment":{
                 "type":"template",
                 "payload":{
-                  "template_type":"generic",
-                  "elements":
+                "template_type":"generic",
+                "elements":
                   [
                     {
                       "title":"Username",
-                      "image_url":"https://www.facebook.com/283378852153374/photos/a.283379032153356/283379038820022/?type=3&theater",  
+                      "image_url":"https://i.pinimg.com/originals/51/9b/cf/519bcfc9e1404745e9e0f63a4c15c623.jpg",  
                       "subtitle":"If you want to challenge that person, you can send challenge now.",
                       "buttons":
                       [
@@ -279,7 +279,8 @@ function setupGetStartedButton(res){
     } 
 
 //start user profile
-function getUserProfile(sender_psid) {
+
+/*function getUserProfile(sender_psid) {
   return new Promise(resolve => {
     request({
       "uri": "https://graph.facebook.com/"+sender_psid+"?fields=first_name,last_name,profile_pic&access_token=EAAGmSf4ySjMBACxNfZAdxEzIPZCT6lyZAyXZCKHmM2DnRO87hH3s5rRaofImCtfTLp3198fMrntu0K5kZBa0WGbcYx4RC4CUNRRku1U3GFvsBO5ZCllHGA6FaWMeL5ZALdph3omIDBanwAW27JTM5zFYslhbqVerzPn7lglQ4vO5r26P4gvIzBb",
@@ -293,7 +294,8 @@ function getUserProfile(sender_psid) {
     }
     });
   });
-}// end of function user profile
+} */
+// end of function user profile
 
 function setupPersistentMenu(res){
         var messageData = { 
