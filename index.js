@@ -258,18 +258,13 @@ function setupPersistentMenu(res){
                     {
                       "type": "postback",
                       "title": "Learn to Box",
-                      "payload": "Learn to Box"                        
+                      "payload": "Learn_to_Box"                        
                      },
                      {
-                        "title":"Player Register",
+                        "title":"Register for Challenge",
                         "type":"web_url",
                         "url":"https://mtboxing.herokuapp.com/register",
                         "webview_height_ratio":"full"
-                      },
-                      {
-                        "type": "postback",
-                        "title": "",
-                        "payload": "CURATION"
                       }
                 ]
             }
