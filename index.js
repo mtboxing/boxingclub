@@ -103,7 +103,6 @@ app.post('/webhook', (req, res) => {
       		else if(message.payload== "Challenge" || userInput =="Challenge")
           {
             callSendAPI(recipientId,{
-
               "attachment":{
                 "type":"template",
                 "payload":{
@@ -123,7 +122,7 @@ app.post('/webhook', (req, res) => {
                     },
                     {
                     "type":"postback",
-                    "title":"Got Challenge",
+                    "title":"Got Challenge?",
                     "payload":"got_challenge"
                     }
                   ]
@@ -131,6 +130,40 @@ app.post('/webhook', (req, res) => {
               }
             });
           }//end of challenge button
+
+
+          else if(message.payload == "challenge_now" || userInput == "challenge_now" )
+          {
+            callSendAPI(recipientId,{
+              "attachment":{
+                "type":"template",
+                "payload":{
+                  "template_type":"generic",
+                  "elements":
+                  [
+                    {
+                      "title":"Username",
+                      "image_url":"https://www.facebook.com/283378852153374/photos/a.283379032153356/283379038820022/?type=3&theater",  
+                      "subtitle":"If you want to challenge that person, you can send challenge now.",
+                      "buttons":
+                      [
+                        {
+                          "type":"postback",
+                          "title":"Send Challenge",
+                          "payload":"send_challenge"
+                        },
+                        {
+                          "type":"postback",
+                          "title":"Cancel",
+                          "payload":"cancel"
+                        }              
+                      ]      
+                    }
+                  ]
+                }
+              }
+            });
+          }//end of view available boxer
 
       	}
 //end of main function
@@ -245,7 +278,22 @@ function setupGetStartedButton(res){
         });
     } 
 
-
+//start user profile
+function getUserProfile(sender_psid) {
+  return new Promise(resolve => {
+    request({
+      "uri": "https://graph.facebook.com/"+sender_psid+"?fields=first_name,last_name,profile_pic&access_token=EAAGmSf4ySjMBACxNfZAdxEzIPZCT6lyZAyXZCKHmM2DnRO87hH3s5rRaofImCtfTLp3198fMrntu0K5kZBa0WGbcYx4RC4CUNRRku1U3GFvsBO5ZCllHGA6FaWMeL5ZALdph3omIDBanwAW27JTM5zFYslhbqVerzPn7lglQ4vO5r26P4gvIzBb",
+      "method": "GET"
+      }, (err, res, body) => {
+        if (!err) { 
+          let data = JSON.parse(body);  
+          resolve(data);                 
+    } else {
+      console.error("Error:" + err);
+    }
+    });
+  });
+}// end of function user profile
 
 function setupPersistentMenu(res){
         var messageData = { 
