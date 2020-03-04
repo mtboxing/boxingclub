@@ -108,3 +108,60 @@ else if(message.payload=="wg")
 }); */
 
 
+
+/*
+callSendAPI(recipientId,{
+              "message":
+              {
+                "text": "Choose a date",
+                "quick_replies":
+                [
+                  {
+                    "content_type":"text",
+                    "title":"Sun",
+                    "payload":"sun",
+                    "image_url":""
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Mon",
+                    "payload":"mon",
+                    "image_url":""   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Tue",
+                    "payload":"tue",
+                    "image_url":""   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Wed",
+                    "payload":"wed",
+                    "image_url":""   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Thurs",
+                    "payload":"thurs",
+                    "image_url":""   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Fri",
+                    "payload":"fri",
+                    "image_url":""   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Sat",
+                    "payload":"sat",
+                    "image_url":""   
+                  }
+                ]
+              }
+            
+          });
+*/
+
+

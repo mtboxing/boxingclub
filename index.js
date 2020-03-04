@@ -217,10 +217,11 @@ app.post('/webhook', (req, res) => {
           //start of challenge later
           else if(message.payload == "challenge_later" || message.text == "Challenge Later")
           {
-            callSendAPI(recipientId,{
-            "attachment":
-            {
-              "message":
+            let request_body = {
+              "recipient": {
+                "id": recipientId
+              },
+              "message": 
               {
                 "text": "Choose a date",
                 "quick_replies":
@@ -270,7 +271,21 @@ app.post('/webhook', (req, res) => {
                 ]
               }
             }
-          });
+           
+           request({
+    "uri": "https://graph.facebook.com/v6.0/me/messages",
+    "qs": { "access_token": PAGE_ACCESS_TOKEN },
+    "method": "POST",
+    "json": request_body
+  }, (err, res, body) => {
+    if (!err) {
+
+      console.log('message sent!')
+    } else {
+      console.error("Unable to send message:" + err);
+    }
+  }); 
+           
           }//end of challenge later
 
 
