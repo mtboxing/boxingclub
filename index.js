@@ -415,6 +415,10 @@ app.post('/webhook', (req, res) => {
           //start of choose date payload
           else if(message.payload == "sun" || message.payload == "mon" || message.payload == "tue" || message.payload == "wed" || message.payload == "thurs" || message.payload == "fri" || message.payload == "sat" )
           {
+            callSendAPI(recipientId,{
+              "text": "You have challenged to the Username. Please wait for the confirmation. We will notify you if the Username is confirm."
+            });
+            /*
             let request_body = {
               "recipient": {
                 "id": recipientId
@@ -436,7 +440,8 @@ app.post('/webhook', (req, res) => {
                 } else {
                   console.error("Unable to send message:" + err);
                 }
-              });  
+              });
+              */  
           }// end of choose date payload
 
       	}
