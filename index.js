@@ -214,6 +214,7 @@ app.post('/webhook', (req, res) => {
             }); 
           }//end of wait for accept
 
+          //start of challenge later
           else if(message.payload == "challenge_later" || message.text == "Challenge Later")
           {
             callSendAPI(recipientId,{
@@ -225,37 +226,44 @@ app.post('/webhook', (req, res) => {
                   {
                     "content_type":"text",
                     "title":"Sun",
-                    "payload":"sun"
+                    "payload":"sun",
+                    "image_url":""
                   },
                   {
                     "content_type":"text",
                     "title":"Mon",
-                    "payload":"mon"   
+                    "payload":"mon",
+                    "image_url":""   
                   },
                   {
                     "content_type":"text",
                     "title":"Tue",
-                    "payload":"tue"   
+                    "payload":"tue",
+                    "image_url":""   
                   },
                   {
                     "content_type":"text",
                     "title":"Wed",
-                    "payload":"wed"   
+                    "payload":"wed",
+                    "image_url":""   
                   },
                   {
                     "content_type":"text",
                     "title":"Thurs",
-                    "payload":"thurs"   
+                    "payload":"thurs",
+                    "image_url":""   
                   },
                   {
                     "content_type":"text",
                     "title":"Fri",
-                    "payload":"fri"   
+                    "payload":"fri",
+                    "image_url":""   
                   },
                   {
                     "content_type":"text",
                     "title":"Sat",
-                    "payload":"sat"   
+                    "payload":"sat",
+                    "image_url":""   
                   }
                 ]
               }
@@ -407,13 +415,13 @@ function setupPersistentMenu(res){
                       "type": "postback",
                       "title": "Learn to Box",
                       "payload": "Learn_to_Box"                        
-                     },
-                     {
-                        "title":"Register for Challenge",
-                        "type":"web_url",
-                        "url":"https://mtboxing.herokuapp.com/register",
-                        "webview_height_ratio":"full"
-                      }
+                    },
+                    {
+                      "title":"Register for Challenge",
+                      "type":"web_url",
+                      "url":"https://mtboxing.herokuapp.com/register",
+                      "webview_height_ratio":"full"
+                    }
                 ]
             }
           ]          
