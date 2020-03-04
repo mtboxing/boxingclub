@@ -346,8 +346,7 @@ app.post('/webhook', (req, res) => {
               "recipient": {
                 "id": recipientId
               },
-              "payload":
-              {
+
               "messaging_type": "RESPONSE",
               "message": 
               {
@@ -398,7 +397,7 @@ app.post('/webhook', (req, res) => {
                   }
                 ]
               }
-            }
+            
             }
            
            request({
