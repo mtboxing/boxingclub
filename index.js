@@ -345,6 +345,7 @@ app.post('/webhook', (req, res) => {
               "recipient": {
                 "id": recipientId
               },
+              "messaging_type": "RESPONSE",
               "message": 
               {
                 "text": "Choose a date",
