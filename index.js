@@ -416,7 +416,7 @@ app.post('/webhook', (req, res) => {
           }//end of challenge later
 
           //start of choose date payload
-          else if(message.payload == "sun" || message.payload == "mon" || message.payload == "tue" || message.payload == "wed" || message.payload == "thurs" || message.payload == "fri" || message.payload == "sat" || message.text =="sun")
+          else if(message.quick_reply.payload == "sun" || message.quick_reply.payload == "mon" || message.quick_reply.payload == "tue" || message.quick_reply.payload == "wed" || message.quick_reply.payload == "thurs" || message.quick_reply.payload == "fri" || message.quick_reply.payload == "sat")
           {
             /*
             callSendAPI(recipientId,{
