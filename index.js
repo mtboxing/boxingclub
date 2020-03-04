@@ -7,6 +7,23 @@ const
   app = express().use(bodyParser.json()); // creates express http server
 const admin = require('firebase-admin');
 
+ var firebaseConfig = {
+    apiKey: "AIzaSyB4cIxZnmyYMGwN_4vflGwCoVKd3n9BiOk",
+    authDomain: "mtboxing-283ae.firebaseapp.com",
+    databaseURL: "https://mtboxing-283ae.firebaseio.com",
+    projectId: "mtboxing-283ae",
+    storageBucket: "mtboxing-283ae.appspot.com",
+    messagingSenderId: "460646938978",
+    appId: "1:460646938978:web:75ee82b4d5d10a535d143b",
+    measurementId: "G-6F7ZQ2736L"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+
+
+
+var db = firebase.firestore();
+
 /*--------------------------------
 ----------------------------------*/
 //start of functionality
@@ -126,6 +143,21 @@ function setupPersistentMenu(res){
             }
         });
     }
+
+function setupavailable(recipientId,match_date){
+  db.collection('match').doc(recipientId).set({
+        date: match_date
+    })
+    .then(function(docRef) {
+        console.log("Document written with ID", docRef);
+
+       
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    
+    });
+}
 
 //end of function
 /*--------------------------------
@@ -356,43 +388,43 @@ app.post('/webhook', (req, res) => {
                   {
                     "content_type":"text",
                     "title":"Sun",
-                    "payload":"sun",
+                    "payload":"Sun",
                     "image_url":""
                   },
                   {
                     "content_type":"text",
                     "title":"Mon",
-                    "payload":"mon",
+                    "payload":"Mon",
                     "image_url":""   
                   },
                   {
                     "content_type":"text",
                     "title":"Tue",
-                    "payload":"tue",
+                    "payload":"Tue",
                     "image_url":""   
                   },
                   {
                     "content_type":"text",
                     "title":"Wed",
-                    "payload":"wed",
+                    "payload":"Wed",
                     "image_url":""   
                   },
                   {
                     "content_type":"text",
                     "title":"Thurs",
-                    "payload":"thurs",
+                    "payload":"Thurs",
                     "image_url":""   
                   },
                   {
                     "content_type":"text",
                     "title":"Fri",
-                    "payload":"fri",
+                    "payload":"Fri",
                     "image_url":""   
                   },
                   {
                     "content_type":"text",
                     "title":"Sat",
-                    "payload":"sat",
+                    "payload":"Sat",
                     "image_url":""   
                   }
                 ]
@@ -416,13 +448,14 @@ app.post('/webhook', (req, res) => {
           }//end of challenge later
 
           //start of choose date payload
-          else if(message.quick_reply.payload == "sun" || message.quick_reply.payload == "mon" || message.quick_reply.payload == "tue" || message.quick_reply.payload == "wed" || message.quick_reply.payload == "thurs" || message.quick_reply.payload == "fri" || message.quick_reply.payload == "sat")
+          else if(message.quick_reply.payload == "Sun" || message.quick_reply.payload == "Mon" || message.quick_reply.payload == "Tue" || message.quick_reply.payload == "Wed" || message.quick_reply.payload == "Thurs" || message.quick_reply.payload == "Fri" || message.quick_reply.payload == "Sat")
           {
             /*
             callSendAPI(recipientId,{
               "text": "You have challenged to the Username. Please wait for the confirmation. We will notify you if the Username is confirm."
             });*/
-            console.log("sun tested");
+            setupavailable(recipientId, message.quick_reply.payload)
+
             let request_body = {
               "recipient": {
                 "id": recipientId
