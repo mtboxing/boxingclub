@@ -6,7 +6,7 @@ const
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()); // creates express http server
 
- var serviceAccount = 
+ var acccountService = 
  ({
   "type": "service_account",
   "project_id": "boxingclub-9fef1",
@@ -25,7 +25,7 @@ const admin = require('firebase-admin');
 const functions = require('firebase-functions');
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount)  
+  credential: admin.credential.cert(acccountService)  
 });
 
 let db = admin.firestore();
@@ -150,8 +150,8 @@ function setupPersistentMenu(res){
         });
     }
 
-function setupavailable(recipientId,match_date){
-  db.collection('match').doc(recipientId).set({
+function setupavailable(recipient_Id,match_date){
+  db.collection('match').doc(recipient_Id).set({
         date: match_date
     })
     .then(function(docRef) {
