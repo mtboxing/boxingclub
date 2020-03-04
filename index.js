@@ -151,7 +151,8 @@ function setupPersistentMenu(res){
     }
 
 function setupavailable(recipient_Id,match_date){
-  db.collection('match').doc(recipient_Id).set({
+  db.collection('match').doc().set({
+        challengerID: recipient_Id,
         date: match_date
     })
     .then(function(docRef) {
