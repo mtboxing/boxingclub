@@ -278,10 +278,8 @@ app.post('/webhook', (req, res) => {
                 "method": "POST",
                 "json": request_body
               }, (err, res, body) => {
-                if (!err) {
-                  callSendAPI(recipientId,{
-                  "text": "We will be notify you if you got challenged."
-                });   
+                if (!err) { 
+                  console.log('message sent!');
                 } else {
                   console.error("Unable to send message:" + err);
                 }
