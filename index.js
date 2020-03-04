@@ -287,6 +287,13 @@ app.post('/webhook', (req, res) => {
 
           }//end of challenge later
 
+          //start of choose date payload
+          if else(message.payload == "sun" || message.payload == "mon" || message.payload == "tue" || message.payload == "wed" || message.payload == "thurs" || message.payload == "fri" || message.payload == "sat" )
+          {
+            callSendAPI(recipientId,{
+              "text": "We will notify you if you got challenged on that day."
+            }); 
+          }
 
       	}
 //end of main function
