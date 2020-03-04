@@ -131,7 +131,7 @@ app.post('/webhook', (req, res) => {
             });
           }//end of challenge button
 
-
+          //start of challenge now
           else if(message.payload == "challenge_now" || message.text=="Challenge Now")
           {
             let request_body = {
@@ -204,7 +204,7 @@ app.post('/webhook', (req, res) => {
                 console.error("Unable to send message:" + err);
               }
             });
-          }//end of view available boxer
+          }//end of challenge now
 
           //start of wait for accept the challenge
           else if(message.payload == "send_challenge")
@@ -214,7 +214,54 @@ app.post('/webhook', (req, res) => {
             }); 
           }//end of wait for accept
 
-
+          else if(message.payload == "challenge_later" || message.text == "Challenge Later")
+          {
+            callSendAPI(recipientId,{
+              "messaging_type": "RESPONSE",
+              "message":
+              {
+                "text": "Choose a date",
+                "quick_replies":
+                [
+                  {
+                    "content_type":"text",
+                    "title":"Sun",
+                    "payload":"sun"
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Mon",
+                    "payload":"mon"   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Tue",
+                    "payload":"tue"   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Wed",
+                    "payload":"wed"   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Thurs",
+                    "payload":"thurs"   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Fri",
+                    "payload":"fri"   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Sat",
+                    "payload":"sat"   
+                  }
+                ]
+              }
+            });
+          }//end of challenge later
 
 
       	}
