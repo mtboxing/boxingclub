@@ -5,24 +5,30 @@ const
   express = require('express'),
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()); // creates express http server
-const admin = require('firebase-admin');
 
- var firebaseConfig = {
-    apiKey: "AIzaSyB4cIxZnmyYMGwN_4vflGwCoVKd3n9BiOk",
-    authDomain: "mtboxing-283ae.firebaseapp.com",
-    databaseURL: "https://mtboxing-283ae.firebaseio.com",
-    projectId: "mtboxing-283ae",
-    storageBucket: "mtboxing-283ae.appspot.com",
-    messagingSenderId: "460646938978",
-    appId: "1:460646938978:web:75ee82b4d5d10a535d143b",
-    measurementId: "G-6F7ZQ2736L"
-  };
+ var serviceAccount = 
+ ({
+  "type": "service_account",
+  "project_id": "boxingclub-9fef1",
+  "private_key_id": "9c21e1b500183411a9b3fc141ace962faeaa101d",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCvNkXSswtpN9Nk\n6H+/qMB5zp3DupkwWXMUX+fRJF3qxqHZdAkfTyk6n1VRcWQIINhZcS8U9Ts8f7Mb\nVTorBBwGwmaW8/UzcRNP8sUPJioraS8HFp/q0LUw+Nt6OJDrBskEI5lKWIpnRKOf\nHoHTuFMZ2IpLdZiV3q5s8ULldLxfd93036w/uFdA50sFGs0tyqM7YUPK8sznWeuR\nsOHS3FOu92pbb84SDAaO8pkW6sk7Zw9JYG7uhnH3leo4d+RxbOlAJ9ERb1F3LeS2\nq9E9mw9ma46C4xsKYhxqRlF1eM8/UXHKb3vGIixnjhJq/GTf4iSIqxVswmIl0gdm\nWEM5jH/NAgMBAAECggEABVQz/vLJnc9gG1FT81cVVY8Sbs3J03XhAWViVlLSFW4p\npYS5M03Tze/jJyk49uNS2TOPUEaeINqsbqAitwS2uoDmoGA2nLQrd3LFig6p2Syn\njMJkJj7nR+BFwpueUruf2QOhKaj0OqxUgqYpojAYvPBAUoe21pYRfYg/9d0dTpT4\nfRzNJWtiX8TaR0NCSXxn+BlJ72eayDidT/f6B+zGaMsxwwqwx4FU4jaMWfONgAQN\nPitdMmS3j194cjJ2dLf8SmFCFqooTzIjyDOIxIFFSOknE5Z/mPZVJ87PySzl+XmA\nn37wCwJqMd7eO0VIV9bMokbU4MJiXVcRK0PvR0y/8QKBgQDvawKpV5xGxREFVIQ9\n8tPBRv54lpC5E3jSQFylUaxgcImNExoQETf5Pxj4WLny25JssdcBnCr9Ns5a0VaZ\ndrVVEiYRDTGlnjtBpTCBFAAQnqmph20r/OfJZO/GkoTSwiietWC2+20fGSmDxeTc\nvRQbaHIlelyyBgDJZohOdjQz0QKBgQC7WNxeOgOf0/IB/ZRF/ebNVyZ1MY1ujmDB\n6HVGoaREmP5YSp7odRxPYpwyQhJ4GGo6FTozZbKScRUoP88boNpyg+wtYzfMfQcw\nbgJt25PEB+LGapP+2uJO5Jd8V9YCiqXfw+l8ZO3biKEZuHOSZR9WZqP3ewyB08sj\n8uQ1+iZ3PQKBgFk/PLi/jePbpiKkhL9K+6C6xDVTexNirNFDaMW/klBI4x2Rl0+R\n+5mP6dD50iczrnuSN6HEA0ps2bOFAZEnbSUPJN2KW41vVIt99nzHZdbMLlahwxJ4\nrjamx7Lv/09JTTcMSccsJltHV/BlHpEicpJc9t/9ovxBvJ1W+Uy2R3NhAoGAWXkH\nzYyBXJx5MNAtNvwadSjQ+hlPRWSD+zeMgs4ByK0Uk5AXskbz3Unn9OyvK2HloZWv\ntQo1rVCKXS2UOMqqaRRuAAMpi+SOQWfYiyTZvj5R5JbT1VwtxqXPXxgH4jDbJTHI\nWZtOKZFn9wOrVlgrDjV4y2GdyIcgtitzKAAuzLUCgYEAukBFYXk7u5Cjithcs279\neykV33l3Zv05OCS3IQcgeMu3WluaHZcS3QITHCyVqMOydGRNmh0Q0+0aXZG2/B3T\nZgBSOmurP+Typ45+eAWU2eroVBf3qOrfO9sWPVJ3SMAlTaWUC6VgyNG4vyHra14+\nudTZuNuFS/eCkATo+i9eI0s=\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-l6qix@boxingclub-9fef1.iam.gserviceaccount.com",
+  "client_id": "115048244356876224880",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-l6qix%40boxingclub-9fef1.iam.gserviceaccount.com"
+});
   // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
+  
+const admin = require('firebase-admin');
+const functions = require('firebase-functions');
 
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount)  
+});
 
-
-var db = firebase.firestore();
+let db = admin.firestore();
 
 /*--------------------------------
 ----------------------------------*/
