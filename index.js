@@ -152,6 +152,7 @@ app.get('/register', (req,res)=>{
   res.sendFile(__dirname + '/public/register.html')
 })
 
+
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
  
@@ -413,13 +414,13 @@ app.post('/webhook', (req, res) => {
           }//end of challenge later
 
           //start of choose date payload
-          else if(message.payload == "sun" || message.payload == "mon" || message.payload == "tue" || message.payload == "wed" || message.payload == "thurs" || message.payload == "fri" || message.payload == "sat" )
+          else if(message.payload == "sun" || message.payload == "mon" || message.payload == "tue" || message.payload == "wed" || message.payload == "thurs" || message.payload == "fri" || message.payload == "sat" || message.text =="sun")
           {
             /*
             callSendAPI(recipientId,{
               "text": "You have challenged to the Username. Please wait for the confirmation. We will notify you if the Username is confirm."
             });*/
-            
+            console.log("sun tested");
             let request_body = {
               "recipient": {
                 "id": recipientId
