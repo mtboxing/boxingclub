@@ -273,19 +273,20 @@ app.post('/webhook', (req, res) => {
             }
            
            request({
-    "uri": "https://graph.facebook.com/v6.0/me/messages",
-    "qs": { "access_token": PAGE_ACCESS_TOKEN },
-    "method": "POST",
-    "json": request_body
-  }, (err, res, body) => {
-    if (!err) {
+                "uri": "https://graph.facebook.com/v6.0/me/messages",
+                "qs": { "access_token": PAGE_ACCESS_TOKEN },
+                "method": "POST",
+                "json": request_body
+              }, (err, res, body) => {
+                if (!err) {
+                  callSendAPI(recipientId,{
+                  "text": "You have challenged to the Username. Please wait for the confirmation. We will notify you if the Username is confirm."
+                });   
+                } else {
+                  console.error("Unable to send message:" + err);
+                }
+              }); 
 
-      console.log('message sent!')
-    } else {
-      console.error("Unable to send message:" + err);
-    }
-  }); 
-           
           }//end of challenge later
 
 
