@@ -280,7 +280,7 @@ app.post('/webhook', (req, res) => {
               }, (err, res, body) => {
                 if (!err) {
                   callSendAPI(recipientId,{
-                  "text": "You have challenged to the Username. Please wait for the confirmation. We will notify you if the Username is confirm."
+                  "text": "We will be notify you if you got challenged."
                 });   
                 } else {
                   console.error("Unable to send message:" + err);
