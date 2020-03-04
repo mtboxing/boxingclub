@@ -414,12 +414,15 @@ app.post('/webhook', (req, res) => {
           //start of choose date payload
           else if(message.payload == "sun" || message.payload == "mon" || message.payload == "tue" || message.payload == "wed" || message.payload == "thurs" || message.payload == "fri" || message.payload == "sat" )
           {
-            callSendAPI(recipientId,{
-              "message":
+            let request_body = {
+              "recipient": {
+                "id": recipientId
+              },
+              "message": 
               {
-              "text":"We will notify you if you got challenged on that day."
+                "text":"We will notify you if you got challenged on that day."
               }
-            });
+            }
 
             request({
                 "uri": "https://graph.facebook.com/v6.0/me/messages",
@@ -433,7 +436,7 @@ app.post('/webhook', (req, res) => {
                   console.error("Unable to send message:" + err);
                 }
               });  
-          }
+          }// end of choose date payload
 
       	}
 //end of main function
