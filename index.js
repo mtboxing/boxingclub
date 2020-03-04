@@ -22,7 +22,7 @@ const
   // Initialize Firebase
   
 const admin = require('firebase-admin');
-const functions = require('firebase-functions');
+//const functions = require('firebase-functions');
 
 admin.initializeApp({
   credential: admin.credential.cert(acccountService)  
