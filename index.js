@@ -169,7 +169,7 @@ app.post('/webhook', (req, res) => {
       console.log(webhook_event);
 
       var recipientId = webhook_event.sender.id 
-      var message = webhook_event.message || webhook_event.postback
+      var message = webhook_event.message || webhook_event.postback || webhook_event.quick_reply
 
       	if(message.text || message.title || message.payload)
         {
