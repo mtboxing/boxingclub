@@ -415,7 +415,10 @@ app.post('/webhook', (req, res) => {
           else if(message.payload == "sun" || message.payload == "mon" || message.payload == "tue" || message.payload == "wed" || message.payload == "thurs" || message.payload == "fri" || message.payload == "sat" )
           {
             callSendAPI(recipientId,{
-              "text": "We will notify you if you got challenged on that day."
+              "message":
+              {
+              "text":"We will notify you if you got challenged on that day."
+              }
             }); 
           }
 
