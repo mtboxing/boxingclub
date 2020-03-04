@@ -217,7 +217,6 @@ app.post('/webhook', (req, res) => {
           else if(message.payload == "challenge_later" || message.text == "Challenge Later")
           {
             callSendAPI(recipientId,{
-              "messaging_type": "RESPONSE",
               "message":
               {
                 "text": "Choose a date",
