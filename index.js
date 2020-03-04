@@ -7,6 +7,130 @@ const
   app = express().use(bodyParser.json()); // creates express http server
 const admin = require('firebase-admin');
 
+/*--------------------------------
+----------------------------------*/
+//start of functionality
+
+function callSendAPI(sender_psid, response) {
+  // Construct the message body
+  let request_body = {
+    "recipient": {
+      "id": sender_psid
+    },
+    "message": response
+  }
+
+  // Send the HTTP request to the Messenger Platform
+  request({
+    "uri": "https://graph.facebook.com/v6.0/me/messages",
+    "qs": { "access_token": PAGE_ACCESS_TOKEN },
+    "method": "POST",
+    "json": request_body
+  }, (err, res, body) => {
+    if (!err) {
+
+      console.log('message sent!')
+    } else {
+      console.error("Unable to send message:" + err);
+    }
+  }); 
+
+}
+
+function setupGetStartedButton(res){
+        var messageData = {
+                "get_started":{"payload":"USER_DEFINED_PAYLOAD"} ,
+                "greeting":[
+  {
+    "locale":"default",
+    "text":"Hello {{user_full_name}}! Thanks for choosing our platform."
+  } 
+]              
+        };
+        // Start the request
+        request({
+            url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ PAGE_ACCESS_TOKEN,
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            form: messageData
+        },
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                // Print out the response body
+                res.send(body);
+
+            } else { 
+                // TODO: Handle errors
+                res.send(body);
+            }
+        });
+    } 
+
+//start user profile
+
+/*function getUserProfile(sender_psid) {
+  return new Promise(resolve => {
+    request({
+      "uri": "https://graph.facebook.com/"+sender_psid+"?fields=first_name,last_name,profile_pic&access_token=EAAGmSf4ySjMBACxNfZAdxEzIPZCT6lyZAyXZCKHmM2DnRO87hH3s5rRaofImCtfTLp3198fMrntu0K5kZBa0WGbcYx4RC4CUNRRku1U3GFvsBO5ZCllHGA6FaWMeL5ZALdph3omIDBanwAW27JTM5zFYslhbqVerzPn7lglQ4vO5r26P4gvIzBb",
+      "method": "GET"
+      }, (err, res, body) => {
+        if (!err) { 
+          let data = JSON.parse(body);  
+          resolve(data);                 
+    } else {
+      console.error("Error:" + err);
+    }
+    });
+  });
+} */
+// end of function user profile
+
+function setupPersistentMenu(res){
+        var messageData = { 
+            "persistent_menu":[
+                {
+                  "locale":"default",
+                  "composer_input_disabled":false,
+                  "call_to_actions":
+                [
+                    {
+                      "type": "postback",
+                      "title": "Learn to Box",
+                      "payload": "Learn_to_Box"                        
+                    },
+                    {
+                      "title":"Register for Challenge",
+                      "type":"web_url",
+                      "url":"https://mtboxing.herokuapp.com/register",
+                      "webview_height_ratio":"full"
+                    }
+                ]
+            }
+          ]          
+        };
+        // Start the request
+        request({
+            url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ PAGE_ACCESS_TOKEN,
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            form: messageData
+        },
+        function (error, response, body) {
+            if (!error && response.statusCode == 200) {
+                // Print out the response body
+                res.send(body);
+
+            } else { 
+                // TODO: Handle errors
+                res.send(body);
+            }
+        });
+    }
+
+//end of function
+/*--------------------------------
+----------------------------------*/
+
 let serviceAccount = require('./serviceAccountKey.json');
 
 admin.initializeApp({
@@ -312,31 +436,7 @@ app.post('/webhook', (req, res) => {
 });
 
 
-function callSendAPI(sender_psid, response) {
-  // Construct the message body
-  let request_body = {
-    "recipient": {
-      "id": sender_psid
-    },
-    "message": response
-  }
 
-  // Send the HTTP request to the Messenger Platform
-  request({
-    "uri": "https://graph.facebook.com/v6.0/me/messages",
-    "qs": { "access_token": PAGE_ACCESS_TOKEN },
-    "method": "POST",
-    "json": request_body
-  }, (err, res, body) => {
-    if (!err) {
-
-      console.log('message sent!')
-    } else {
-      console.error("Unable to send message:" + err);
-    }
-  }); 
-
-}
 
 // Adds support for GET requests to our webhook
 app.get('/webhook', (req, res) => {
@@ -379,95 +479,7 @@ app.get('/setpersistentmenu',function(req,res){
     setupPersistentMenu(res);    
 });
 
-function setupGetStartedButton(res){
-        var messageData = {
-                "get_started":{"payload":"USER_DEFINED_PAYLOAD"} ,
-                "greeting":[
-  {
-    "locale":"default",
-    "text":"Hello {{user_full_name}}! Thanks for choosing our platform."
-  } 
-]              
-        };
-        // Start the request
-        request({
-            url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ PAGE_ACCESS_TOKEN,
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            form: messageData
-        },
-        function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                // Print out the response body
-                res.send(body);
 
-            } else { 
-                // TODO: Handle errors
-                res.send(body);
-            }
-        });
-    } 
-
-//start user profile
-
-/*function getUserProfile(sender_psid) {
-  return new Promise(resolve => {
-    request({
-      "uri": "https://graph.facebook.com/"+sender_psid+"?fields=first_name,last_name,profile_pic&access_token=EAAGmSf4ySjMBACxNfZAdxEzIPZCT6lyZAyXZCKHmM2DnRO87hH3s5rRaofImCtfTLp3198fMrntu0K5kZBa0WGbcYx4RC4CUNRRku1U3GFvsBO5ZCllHGA6FaWMeL5ZALdph3omIDBanwAW27JTM5zFYslhbqVerzPn7lglQ4vO5r26P4gvIzBb",
-      "method": "GET"
-      }, (err, res, body) => {
-        if (!err) { 
-          let data = JSON.parse(body);  
-          resolve(data);                 
-    } else {
-      console.error("Error:" + err);
-    }
-    });
-  });
-} */
-// end of function user profile
-
-function setupPersistentMenu(res){
-        var messageData = { 
-            "persistent_menu":[
-                {
-                  "locale":"default",
-                  "composer_input_disabled":false,
-                  "call_to_actions":
-                [
-                    {
-                      "type": "postback",
-                      "title": "Learn to Box",
-                      "payload": "Learn_to_Box"                        
-                    },
-                    {
-                      "title":"Register for Challenge",
-                      "type":"web_url",
-                      "url":"https://mtboxing.herokuapp.com/register",
-                      "webview_height_ratio":"full"
-                    }
-                ]
-            }
-          ]          
-        };
-        // Start the request
-        request({
-            url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ PAGE_ACCESS_TOKEN,
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            form: messageData
-        },
-        function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                // Print out the response body
-                res.send(body);
-
-            } else { 
-                // TODO: Handle errors
-                res.send(body);
-            }
-        });
-    }
 
 
 
