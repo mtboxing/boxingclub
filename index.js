@@ -231,7 +231,7 @@ app.post('/webhook', (req, res) => {
                 "type":"template",
                 "payload":{
                   "template_type":"button",
-                  "text": `You can challenge the game,\nPlease, make sure you choose the right decision.`,
+                  "text": `You can challenge the person,\nPlease, make sure you choose the right decision.`,
                   "buttons":
                   [
                     {
@@ -285,7 +285,7 @@ app.post('/webhook', (req, res) => {
                       [
                         {
                           "title":"Username",
-                          "image_url":"https://i.pinimg.com/originals/51/9b/cf/519bcfc9e1404745e9e0f63a4c15c623.jpg",  
+                          "image_url":"https://i.pinimg.com/originals/3a/59/f1/3a59f13bbe775518072832cb0f308aa0.png",  
                           "subtitle":"If you want to challenge that person, you can send challenge now.",
                           "buttons":
                           [
@@ -303,7 +303,7 @@ app.post('/webhook', (req, res) => {
                         },
                         {
                           "title":"Username2",
-                          "image_url":"https://i.pinimg.com/originals/51/9b/cf/519bcfc9e1404745e9e0f63a4c15c623.jpg",  
+                          "image_url":"https://i.pinimg.com/originals/3a/59/f1/3a59f13bbe775518072832cb0f308aa0.png",  
                           "subtitle":"If you want to challenge that person, you can send challenge now.",
                           "buttons":
                           [
