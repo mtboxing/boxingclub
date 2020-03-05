@@ -18,19 +18,14 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   
 
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.9.3/firebase-firestore.js"></script>
+
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
-  <script>
-  $( function() {
-    $( "#datepicker" ).datepicker({
-        numberOfMonths:1,
-        changeYear:true,
-        changeMonth:true,
-        minDate:0
-    });
-  } );
-  </script>
+  
 
 </head>
 <body>
@@ -44,19 +39,48 @@
     <button id="btnSubmit">Submit</button>
     <button>Cancel</button>
     
-    <input type="hidden" value="<%= dbconnection %>" id="hdb">  
+    
     <input type="hidden" value="<%= receiptid%>" id="userid"> 
 
 
 
-<script type="text/javascript">
-  var date = document.getElementById('#datepicker').value;
-  let db = document.getElementById("#hdb").value;
-  var uid = document.getElementById("#userid").value;
+
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyAkLgFZMExCT_Ux-T28wdC66onrjhMfoIY",
+    authDomain: "boxingclub-9fef1.firebaseapp.com",
+    databaseURL: "https://boxingclub-9fef1.firebaseio.com",
+    projectId: "boxingclub-9fef1",
+    storageBucket: "boxingclub-9fef1.appspot.com",
+    messagingSenderId: "721521608303",
+    appId: "1:721521608303:web:b25fca0cd4f49dffc86f9a",
+    measurementId: "G-0VRE76XHCZ"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
   
-  alert(date,' ',db, ' ',uid);
+  const db = firebase.firestore()
+
+
+   $( function() {
+    $( "#datepicker" ).datepicker({
+        numberOfMonths:1,
+        changeYear:true,
+        changeMonth:true,
+        minDate:0
+    });
+  } ); //Jquery for calendar
+
+  var date = document.getElementById('#datepicker').value;
+ 
+  var uid = document.getElementById("#userid").value;
+
+  
   btnSubmit.click(function(){
-     db.collection('match').doc(receiptid).set({
+      alert(date+" "+uid);
+     db.collection('match').doc(uid).set({
         
         date: date
     })
@@ -71,7 +95,7 @@
     });
   })
 </script>
- 
+
  
 </body>
 </html>
