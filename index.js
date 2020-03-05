@@ -151,7 +151,7 @@ function setupPersistentMenu(res){
     }
 
 function setupavailable(recipient_Id,match_date){
-  db.collection('match').doc().set({
+  db.collection('match').doc(recipient_Id).set({
         challengerID: recipient_Id,
         date: match_date
     })
@@ -192,6 +192,9 @@ app.get('/register', (req,res)=>{
   res.sendFile(__dirname + '/public/register.html')
 })
 
+app.get('/challengelater/:id',(req,res)=>{
+  res.render(calendar, {receiptid: req.params.id});
+})
 
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
@@ -283,7 +286,8 @@ app.post('/webhook', (req, res) => {
                     {
                     "type":"postback",
                     "title":"Challenge Later",
-                    "payload":"challenge_later"
+                    "url":"https://mtboxing.herokuapp.com/challengelater/${recipientId}",
+                    "webview_height_ratio":"full"
                     },
                     {
                     "type":"postback",
