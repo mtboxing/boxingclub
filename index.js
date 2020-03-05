@@ -286,7 +286,7 @@ app.post('/webhook', (req, res) => {
                     {
                     "type":"web_url",
                     "title":"Challenge Later",
-                    "url":"https://mtboxing.herokuapp.com/challengelater/${recipientId}",
+                    "url":`https://mtboxing.herokuapp.com/challengelater/${recipientId}`,
                     "webview_height_ratio":"full"
                     },
                     {
