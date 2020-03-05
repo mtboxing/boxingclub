@@ -29,22 +29,19 @@
 
 </head>
 <body>
-    <h1> your id is <%= receiptid %> </h1>
-
+  <form id="submit_date">
 
     <p>Date: 
-        <input type="text" id="datepicker">
+        <input type="text" name="bookdate" id="datepicker">
+
+        <input type="hidden" value="<%= receiptid%>" id="userid">
     </p>
 
-    <button id="btnSubmit">Submit</button>
+<button>Submit</button>
     <button>Cancel</button>
-    
-    
-    <input type="hidden" value="<%= receiptid%>" id="userid"> 
 
 
-
-
+    </form>
 
 <script>
   // Your web app's Firebase configuration
@@ -73,16 +70,16 @@
     });
   } ); //Jquery for calendar
 
-  var date = document.getElementById('#datepicker').value;
- 
-  var uid = document.getElementById("#userid").value;
-
   
-  btnSubmit.click(function(){
-      alert(date+" "+uid);
+ 
+  var uid =document.getElementById("userid")
+  const form = document.querySelector('#submit_date');
+  
+  form.addEventListener('submit',(e)=> {
+      alert(form.bookdate.value+''+uid);
      db.collection('match').doc(uid).set({
         
-        date: date
+        date: form.bookdate.value
     })
     .then(function(docRef) {
         console.log("Document written with ID", docRef);
@@ -93,9 +90,12 @@
         console.error("Error adding document: ", error);
     
     });
-  })
+  });
+
 </script>
 
+
+ 
  
 </body>
 </html>
