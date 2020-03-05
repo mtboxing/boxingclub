@@ -7,7 +7,7 @@ const
   app = express().use(bodyParser.json()),
   path = require('path'); 
   // creates express http server
-  app.set('views', path.join(__dirname,'views'));
+  app.set('views', path.join(__dirname+'/views'));
   app.set('view engine','ejs');
   
 
@@ -205,7 +205,7 @@ app.get('/challengelater/:id',(req,res)=>{
 app.post('/webhook', (req, res) => {  
  
   let body = req.body;
-  console.log(__dirname);
+  console.log('Myroot file is ', __dirname);
 
   // Checks this is an event from a page subscription
   if (body.object === 'page') {
