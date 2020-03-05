@@ -36,16 +36,41 @@
 <body>
     <h1> your id is <%= receiptid %> </h1>
 
+
     <p>Date: 
         <input type="text" id="datepicker">
     </p>
 
-    <button>Submit</button>
+    <button id="btnSubmit">Submit</button>
     <button>Cancel</button>
+    
+    <input type="hidden" value="<%= dbconnection %>" id="hdb">  
+    <input type="hidden" value="<%= receiptid%>" id="userid"> 
 
 
 
+<script type="text/javascript">
+  var date = document.getElementById('#datepicker').value;
+  let db = document.getElementById("#hdb").value;
+  var uid = document.getElementById("#userid").value;
+  
+  alert(date,' ',db, ' ',uid);
+  btnSubmit.click(function(){
+     db.collection('match').doc(receiptid).set({
+        
+        date: date
+    })
+    .then(function(docRef) {
+        console.log("Document written with ID", docRef);
 
+       
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    
+    });
+  })
+</script>
  
  
 </body>

@@ -199,7 +199,7 @@ app.get('/register', (req,res)=>{
 
 app.get('/challengelater/:id',(req,res)=>{
  console.log(__dirname);
-  res.render('calendar' , {receiptid: req.params.id}); 
+  res.render('calendar' , {receiptid: req.params.id,dbconnection : db}); 
   //res.sendFile(__dirname + '/public/calendar.html')
 })
 
