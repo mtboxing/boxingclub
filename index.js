@@ -5,7 +5,8 @@ const
   express = require('express'),
   bodyParser = require('body-parser'),
   app = express().use(bodyParser.json()); // creates express http server
-  app.set('view engine','ejs');
+  app.set('view engine','ejs'),
+  ejs = require('ejs');
 
  var acccountService = 
  ({
