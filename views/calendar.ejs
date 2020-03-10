@@ -44,21 +44,7 @@
     </form>
 
 <script>
-  // Your web app's Firebase configuration
-  var firebaseConfig = {
-    apiKey: "AIzaSyAkLgFZMExCT_Ux-T28wdC66onrjhMfoIY",
-    authDomain: "boxingclub-9fef1.firebaseapp.com",
-    databaseURL: "https://boxingclub-9fef1.firebaseio.com",
-    projectId: "boxingclub-9fef1",
-    storageBucket: "boxingclub-9fef1.appspot.com",
-    messagingSenderId: "721521608303",
-    appId: "1:721521608303:web:b25fca0cd4f49dffc86f9a",
-    measurementId: "G-0VRE76XHCZ"
-  };
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-  
-  const db = firebase.firestore()
+ 
 
 
    $( function() {
@@ -72,26 +58,25 @@
 
   
  
-  var uid =document.getElementById("userid").value;
+ 
   const form = document.querySelector('#submit_date');
   
   form.addEventListener('submit',(e)=> {
-      alert(form.bookdate.value+''+uid);
+      alert(form.bookdate.value);
       var data ={
         userId: form.userid.value,
         date: form.bookdate.value
       }
-      fetch('/data',{
-    method: 'POST', // include, *same-origin, omit
-    headers: {
-      'Content-Type': 'application/json'
-      // 'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    
-    body: JSON.stringify(data) // body data type must match "Content-Type" header
-  })
+      fetch('https://mtboxing.herokuapp.com/data',{
+        method: 'POST', 
+        headers: {
+          'Content-Type': 'application/json'
+        },        
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+      })
        .then((response) => {
         return response.json();
+        alert('successs cand');
         // close automatically 
     });
   });

@@ -1,17 +1,4 @@
 
-  // Initialize Firebase
-  firebase.initializeApp(firebaseConfig);
-
-
-
-var db = firebase.firestore();
-
-
-
-
-
-
-
 function test(){
 	//console.log("hi")
 	var username = document.getElementById('username').value;
@@ -30,7 +17,7 @@ function test(){
 			weight: weight
 		}
 
-		fetch('/data',{
+		fetch('https://mtboxing.herokuapp.com/registerData',{
     		method: 'POST', // include, *same-origin, omit
     		headers: {
       		'Content-Type': 'application/json'
@@ -40,8 +27,11 @@ function test(){
    		body: JSON.stringify(data) // body data type must match "Content-Type" header
   		})
        .then((response) => {
+       	alert('success');
         return response.json();
         // close automatically 
+    	}).catch(err=>{
+    		alert(err);
     	});
 
 }

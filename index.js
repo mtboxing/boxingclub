@@ -210,7 +210,7 @@ app.post('/data', (req,res)=>{
 
 });
 
-app.post('https://mtboxing.herokuapp.com/registerData', (req,res)=>{
+app.post('/registerData', (req,res)=>{
   console.log();
   db.collection('users').doc().set({
         Name: req.body.Name,
@@ -418,7 +418,7 @@ app.post('/webhook', (req, res) => {
           }//end of wait for accept
 
           //start of challenge later
-          else if(message.payload == "challenge_later" || message.text == "Challenge Later")
+          /*else if(message.payload == "challenge_later" || message.text == "Challenge Later")
           {
             let request_body = {
               "recipient": {
@@ -492,6 +492,8 @@ app.post('/webhook', (req, res) => {
               }); 
 
           }//end of challenge later
+
+          */
 
           //start of choose date payload
           else if(message.quick_reply.payload == "Sun" || message.quick_reply.payload == "Mon" || message.quick_reply.payload == "Tue" || message.quick_reply.payload == "Wed" || message.quick_reply.payload == "Thurs" || message.quick_reply.payload == "Fri" || message.quick_reply.payload == "Sat")
