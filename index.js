@@ -348,8 +348,17 @@ app.post('/webhook', (req, res) => {
               }
             }
 
-            // Send the HTTP request to the Messenger Platform
-            request({
+
+            
+            
+            db.collection('match').where('date','==' ,'03/19/2020' ).get().then(item=>{
+              if(item.empty){
+                ///show sth
+
+              }else{
+                item.docs.forEach(doc=>{
+                    // fetchind facebook profile 
+                     request({
               "uri": "https://graph.facebook.com/v5.0/me/messages",
               "qs": { "access_token": PAGE_ACCESS_TOKEN },
               "method": "POST",
@@ -363,28 +372,10 @@ app.post('/webhook', (req, res) => {
                     "template_type":"generic",
                     "elements":
                       [
-                        {
-                          "title":"Username",
+                         {
+                          "title":`${doc.challengerID}`,
                           "image_url":"https://i.pinimg.com/originals/3a/59/f1/3a59f13bbe775518072832cb0f308aa0.png",  
-                          "subtitle":"If you want to challenge that person, you can send challenge now.",
-                          "buttons":
-                          [
-                            {
-                              "type":"postback",
-                              "title":"Send Challenge",
-                              "payload":"send_challenge"
-                            },
-                            {
-                              "type":"postback",
-                              "title":"Cancel",
-                              "payload":"Challenge"
-                            }              
-                          ]      
-                        },
-                        {
-                          "title":"Username2",
-                          "image_url":"https://i.pinimg.com/originals/3a/59/f1/3a59f13bbe775518072832cb0f308aa0.png",  
-                          "subtitle":"If you want to challenge that person, you can send challenge now.",
+                          "subtitle":`If you want to challenge that person, you can send challenge now. ${doc.dates}`,
                           "buttons":
                           [
                             {
@@ -408,6 +399,13 @@ app.post('/webhook', (req, res) => {
                 console.error("Unable to send message:" + err);
               }
             });
+                });
+
+              }
+            })
+
+            // Send the HTTP request to the Messenger Platform
+          
           }//end of challenge now
 
           //start of wait for accept the challenge
