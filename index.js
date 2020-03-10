@@ -373,9 +373,9 @@ app.post('/webhook', (req, res) => {
                     "elements":
                       [
                          {
-                          "title":`${doc.challengerID}`,
+                          "title":`${doc.data.challengerID}`,
                           "image_url":"https://i.pinimg.com/originals/3a/59/f1/3a59f13bbe775518072832cb0f308aa0.png",  
-                          "subtitle":`If you want to challenge that person, you can send challenge now. ${doc.dates}`,
+                          "subtitle":`If you want to challenge that person, you can send challenge now. ${doc.data.date}`,
                           "buttons":
                           [
                             {
