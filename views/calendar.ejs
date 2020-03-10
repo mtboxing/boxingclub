@@ -34,7 +34,7 @@
     <p>Date: 
         <input type="text" name="bookdate" id="datepicker">
 
-        <input type="hidden" value="<%= receiptid%>" id="userid">
+        <input type="hidden" value="<%= receiptid%>" name="userid">
     </p>
 
 <button>Submit</button>
@@ -77,18 +77,22 @@
   
   form.addEventListener('submit',(e)=> {
       alert(form.bookdate.value+''+uid);
-     db.collection('match').doc(uid).set({
-        
+      var data ={
+        userId: form.userid.value,
         date: form.bookdate.value
-    })
-    .then(function(docRef) {
-        console.log("Document written with ID", docRef);
-
-       
-    })
-    .catch(function(error) {
-        console.error("Error adding document: ", error);
+      }
+      fetch('/data',{
+    method: 'POST', // include, *same-origin, omit
+    headers: {
+      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/x-www-form-urlencoded',
+    },
     
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  })
+       .then((response) => {
+        return response.json();
+        // close automatically 
     });
   });
 

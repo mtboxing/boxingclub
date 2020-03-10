@@ -171,6 +171,7 @@ function setupavailable(recipient_Id,match_date){
     });
 }
 
+
 //end of function
 /*--------------------------------
 ----------------------------------*/
@@ -203,6 +204,31 @@ app.get('/challengelater/:id',(req,res)=>{
   //res.sendFile(__dirname + '/public/calendar.html')
 })
 
+app.post('/data', (req,res)=>{
+  console.log(req.body.userId, req.body.date);
+  setupavailable(req.body.userId,req.body.date);
+
+});
+
+app.post('https://mtboxing.herokuapp.com/registerData', (req,res)=>{
+  console.log();
+  db.collection('users').doc().set({
+        Name: req.body.Name,
+        Age: req.body.age,
+        Gender: req.body.gender,
+        Height: req.body.height,
+        Weight: req.body.weight
+    })
+    .then(function(docRef) {
+        console.log("Document written with ID");
+
+       
+    })
+    .catch(function(error) {
+        console.error("Error adding document: ", error);
+    
+    });
+})
 // Creates the endpoint for our webhook 
 app.post('/webhook', (req, res) => {  
  
