@@ -62,7 +62,7 @@
   const form = document.querySelector('#submit_date');
   
   form.addEventListener('submit',(e)=> {
-      alert(form.bookdate.value);
+     // alert(form.bookdate.value);
       var data ={
         userId: form.userid.value,
         date: form.bookdate.value
@@ -75,9 +75,10 @@
         body: JSON.stringify(data) // body data type must match "Content-Type" header
       })
        .then((response) => {
-        return response.json();
-        alert('successs cand');
-        // close automatically 
+        
+        
+        // close automatically
+
     });
   });
 

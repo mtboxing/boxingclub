@@ -1,3 +1,36 @@
+	var uid ='';
+      (function(d, s, id){
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) {return;}
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/messenger.Extensions.js";
+        fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'Messenger'));
+     
+       window.extAsyncInit = function() {
+        var isSupported = MessengerExtensions.isInExtension(); 
+        alert(isSupported);
+  
+        MessengerExtensions.getContext('204821140569252', 
+        function success(result){
+          alert("Success: "+result.psid);
+          uid = result.psid;
+
+        },
+        function error(result){
+          alert("eero has");
+        }    
+      );
+      function closeWeb(){
+        MessengerExtensions.requestCloseBrowser(function success() {
+          alert('webview closed');
+        }, function error(err) {
+          alert(err.message);
+        });
+      }       
+       
+      };
+
 
 function test(){
 	//console.log("hi")
@@ -6,7 +39,7 @@ function test(){
 	var gender = document.getElementById('gender').value;
 	var height = document.getElementById('height').value;
 	var weight = document.getElementById('weight').value;
-	console.log("hi", username, age, gender, height,weight)
+	//console.log("hi", username, age, gender, height,weight)
 
 		
 		data = {
@@ -14,7 +47,8 @@ function test(){
 			age: age,
 			gender: gender,
 			height: height,
-			weight: weight
+			weight: weight,
+			userid: uid
 		}
 
 		fetch('https://mtboxing.herokuapp.com/registerData',{
@@ -27,11 +61,16 @@ function test(){
    		body: JSON.stringify(data) // body data type must match "Content-Type" header
   		})
        .then((response) => {
-       	alert('success');
-        return response.json();
+       	  MessengerExtensions.requestCloseBrowser(function success() {
+          console.log("Webview closing");
+          alert('close');
+	      }, function error(err) {
+	          console.log(err);
+	          alert('colse error: ');
+	      });
         // close automatically 
     	}).catch(err=>{
-    		alert(err);
+    		alert(err,'mayo');
     	});
 
 }
