@@ -416,8 +416,38 @@ app.post('/webhook', (req, res) => {
             }); 
           }//end of wait for accept
 
+
           //start of challenge later
           else if(message.payload == "challenge_later" || message.text == "Challenge Later")
+          {
+            callSendAPI(recipientId,{
+              "messaging_type": "RESPONSE",
+              "message":
+              {
+                "text": "",
+                "quick_replies":
+                [
+                  {
+                    "content_type":"text",
+                    "title":"This Week",
+                    "payload":"this_week",
+                    "image_url":""
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Next Week",
+                    "payload":"next_week",
+                    "image_url":""   
+                  }
+                ]
+              }
+            
+          });
+          }
+          //end of challenge later
+
+          //start of this week
+          else if(message.payload == "this_week" || message.text == "This Week")
           {
             let request_body = {
               "recipient": {
