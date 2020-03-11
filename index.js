@@ -533,7 +533,7 @@ app.post('/webhook', (req, res) => {
           //start of next week
            else if(message.quick_reply.payload == "next_week" || message.text == "Next Week")
           {
-            console.log("success pass next week");
+           // console.log("success pass next week");
 
             let request_body = {
               "recipient": {
@@ -548,44 +548,20 @@ app.post('/webhook', (req, res) => {
                 [
                   {
                     "content_type":"text",
-                    "title":"Sun",
-                    "payload":"sun",
+                    "title":"This Week",
+                    "payload":"this_week",
                     "image_url":""
                   },
                   {
                     "content_type":"text",
-                    "title":"Mon",
-                    "payload":"mon",
+                    "title":"Next Week",
+                    "payload":"next_week",
                     "image_url":""   
                   },
                   {
                     "content_type":"text",
-                    "title":"Tue",
-                    "payload":"tue",
-                    "image_url":""   
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Wed",
-                    "payload":"wed",
-                    "image_url":""   
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Thurs",
-                    "payload":"thurs",
-                    "image_url":""   
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Fri",
-                    "payload":"fri",
-                    "image_url":""   
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Sat",
-                    "payload":"sat",
+                    "title":"Cancel",
+                    "payload":"challenge_later",
                     "image_url":""   
                   }
                 ]
@@ -606,7 +582,7 @@ app.post('/webhook', (req, res) => {
                 } else {
                   console.error("Unable to send message:" + err);
                 }
-              });//end of request
+              });
 
 
           }
