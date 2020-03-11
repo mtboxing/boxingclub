@@ -319,7 +319,7 @@ app.post('/webhook', (req, res) => {
                       "payload":"challenge_now"
                     },
                     {
-                    "type":"web_url",
+                    "type":"postback",
                     "title":"Challenge Later",
                     "payload": "challenge_later"
                     /*"url":`https://mtboxing.herokuapp.com/challengelater/${recipientId}`,
