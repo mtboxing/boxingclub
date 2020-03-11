@@ -321,8 +321,9 @@ app.post('/webhook', (req, res) => {
                     {
                     "type":"web_url",
                     "title":"Challenge Later",
-                    "url":`https://mtboxing.herokuapp.com/challengelater/${recipientId}`,
-                    "webview_height_ratio":"full"
+                    "payload": "challenge_later"
+                    /*"url":`https://mtboxing.herokuapp.com/challengelater/${recipientId}`,
+                    "webview_height_ratio":"full"*/
                     },
                     {
                     "type":"postback",
@@ -420,11 +421,15 @@ app.post('/webhook', (req, res) => {
           //start of challenge later
           else if(message.payload == "challenge_later" || message.text == "Challenge Later")
           {
-            callSendAPI(recipientId,{
+            let request_body = {
+              "recipient": {
+                "id": recipientId
+              },
+
               "messaging_type": "RESPONSE",
-              "message":
+              "message": 
               {
-                "text": "",
+                "text": "This week or Next Week",
                 "quick_replies":
                 [
                   {
@@ -442,7 +447,24 @@ app.post('/webhook', (req, res) => {
                 ]
               }
             
-          });
+            }
+
+
+
+            request({
+                "uri": "https://graph.facebook.com/v6.0/me/messages",
+                "qs": { "access_token": PAGE_ACCESS_TOKEN },
+                "method": "POST",
+                "json": request_body
+              }, (err, res, body) => {
+                if (!err) { 
+                  console.log('message sent!');
+                } else {
+                  console.error("Unable to send message:" + err);
+                }
+              });
+
+
           }
           //end of challenge later
 
