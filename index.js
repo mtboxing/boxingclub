@@ -248,7 +248,7 @@ app.post('/webhook', (req, res) => {
       console.log(webhook_event);
 
       var recipientId = webhook_event.sender.id 
-      var message = webhook_event.message || webhook_event.postback || webhook_event.quick_reply
+      var message = webhook_event.message || webhook_event.postback || webhook_event.message.quick_reply || webhook_event.message.quick_reply.payload
 
       	if(message.text || message.title || message.payload)
         {
