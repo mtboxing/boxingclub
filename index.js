@@ -469,10 +469,10 @@ app.post('/webhook', (req, res) => {
           //end of challenge later
 
           //start of this week
-          else if(message.quick_reply.payload == "this_week" || message.text == "This Week")
+          else if(message.quick_reply.payload == "this_week")
           {
             
-
+            console.log("success pass this week");
             var cars = ["Mon", "Tue", "Web", "Thur", "Fri", "Sat","Sun"];
             var d = new Date;
             var n = d.getDay();
