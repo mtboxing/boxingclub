@@ -443,6 +443,12 @@ app.post('/webhook', (req, res) => {
                     "title":"Next Week",
                     "payload":"next_week",
                     "image_url":""   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Cancel",
+                    "payload":"challenge_later",
+                    "image_url":""   
                   }
                 ]
               }
@@ -520,9 +526,91 @@ app.post('/webhook', (req, res) => {
                 } else {
                   console.error("Unable to send message:" + err);
                 }
-              }); 
+              }); //end of request
 
-          }//end of challenge later
+          }//end of this week
+
+          //start of next week
+           else if(message.quick_reply.payload == "next_week" || message.text == "Next Week")
+          {
+            console.log("success pass next week");
+
+            let request_body = {
+              "recipient": {
+                "id": recipientId
+              },
+
+              "messaging_type": "RESPONSE",
+              "message": 
+              {
+                "text": "This week or Next Week",
+                "quick_replies":
+                [
+                  {
+                    "content_type":"text",
+                    "title":"Sun",
+                    "payload":"sun",
+                    "image_url":""
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Mon",
+                    "payload":"mon",
+                    "image_url":""   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Tue",
+                    "payload":"tue",
+                    "image_url":""   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Wed",
+                    "payload":"wed",
+                    "image_url":""   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Thurs",
+                    "payload":"thurs",
+                    "image_url":""   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Fri",
+                    "payload":"fri",
+                    "image_url":""   
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Sat",
+                    "payload":"sat",
+                    "image_url":""   
+                  }
+                ]
+              }
+            
+            }
+
+
+
+            request({
+                "uri": "https://graph.facebook.com/v6.0/me/messages",
+                "qs": { "access_token": PAGE_ACCESS_TOKEN },
+                "method": "POST",
+                "json": request_body
+              }, (err, res, body) => {
+                if (!err) { 
+                  console.log('message sent!');
+                } else {
+                  console.error("Unable to send message:" + err);
+                }
+              });//end of request
+
+
+          }
+          //end of challenge later
 
           
 
