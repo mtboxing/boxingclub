@@ -469,8 +469,26 @@ app.post('/webhook', (req, res) => {
           //end of challenge later
 
           //start of this week
-          else if(message.payload == "this_week" || message.text == "This Week")
+          else if(message.quick_reply.payload == "this_week" || message.text == "This Week")
           {
+            
+
+            var cars = ["Mon", "Tue", "Web", "Thur", "Fri", "Sat","Sun"];
+            var d = new Date;
+            var n = d.getDay();
+            //alert(n);
+            var text = "";
+            var i;
+            for (i = n  ; i < cars.length; i++) {
+              text += {
+                    "content_type":"text",
+                    "title":cars[i],
+                    "payload":cars[i],
+                    "image_url":""
+                  } + ",";
+            }
+            text = text.substring(0,text.length-1);
+
             let request_body = {
               "recipient": {
                 "id": recipientId
@@ -482,53 +500,15 @@ app.post('/webhook', (req, res) => {
                 "text": "Choose a date",
                 "quick_replies":
                 [
-                  {
-                    "content_type":"text",
-                    "title":"Sun",
-                    "payload":"Sun",
-                    "image_url":""
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Mon",
-                    "payload":"Mon",
-                    "image_url":""   
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Tue",
-                    "payload":"Tue",
-                    "image_url":""   
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Wed",
-                    "payload":"Wed",
-                    "image_url":""   
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Thurs",
-                    "payload":"Thurs",
-                    "image_url":""   
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Fri",
-                    "payload":"Fri",
-                    "image_url":""   
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Sat",
-                    "payload":"Sat",
-                    "image_url":""   
-                  }
+                  text
                 ]
               }
             
             }
-           
+
+            console.log('first sang', text);
+            console.log('second sang', request_body);
+
            request({
                 "uri": "https://graph.facebook.com/v6.0/me/messages",
                 "qs": { "access_token": PAGE_ACCESS_TOKEN },
