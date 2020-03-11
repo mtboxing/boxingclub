@@ -474,61 +474,7 @@ app.post('/webhook', (req, res) => {
           }
           //end of challenge later
 
-          //start of this week
-          else if(message.quick_reply.payload == "this_week")
-          {
-            
-            console.log("success pass this week");
-            var cars = ["Mon", "Tue", "Web", "Thur", "Fri", "Sat","Sun"];
-            var d = new Date;
-            var n = d.getDay();
-            //alert(n);
-            var text = "";
-            var i;
-            for (i = n  ; i < cars.length; i++) {
-              text += {
-                    "content_type":"text",
-                    "title":cars[i],
-                    "payload":cars[i],
-                    "image_url":""
-                  } + ",";
-            }
-            text = text.substring(0,text.length-1);
-
-            let request_body = {
-              "recipient": {
-                "id": recipientId
-              },
-
-              "messaging_type": "RESPONSE",
-              "message": 
-              {
-                "text": "Choose a date",
-                "quick_replies":
-                [
-                  text
-                ]
-              }
-            
-            }
-
-            console.log('first sang', text);
-            console.log('second sang', request_body);
-
-           request({
-                "uri": "https://graph.facebook.com/v6.0/me/messages",
-                "qs": { "access_token": PAGE_ACCESS_TOKEN },
-                "method": "POST",
-                "json": request_body
-              }, (err, res, body) => {
-                if (!err) { 
-                  console.log('message sent!');
-                } else {
-                  console.error("Unable to send message:" + err);
-                }
-              }); //end of request
-
-          }//end of this week
+          
 
           //start of next week
            else if(message.quick_reply.payload == "next_week" || message.text == "Next Week")
@@ -587,6 +533,62 @@ app.post('/webhook', (req, res) => {
 
           }
           //end of challenge later
+
+          //start of this week
+          else if(message.quick_reply.payload == "this_week")
+          {
+            
+            console.log("success pass this week");
+            var cars = ["Mon", "Tue", "Web", "Thur", "Fri", "Sat","Sun"];
+            var d = new Date;
+            var n = d.getDay();
+            //alert(n);
+            var text = "";
+            var i;
+            for (i = n  ; i < cars.length; i++) {
+              text += {
+                    "content_type":"text",
+                    "title":cars[i],
+                    "payload":cars[i],
+                    "image_url":""
+                  } + ",";
+            }
+            text = text.substring(0,text.length-1);
+
+            let request_body = {
+              "recipient": {
+                "id": recipientId
+              },
+
+              "messaging_type": "RESPONSE",
+              "message": 
+              {
+                "text": "Choose a date",
+                "quick_replies":
+                [
+                  text
+                ]
+              }
+            
+            }
+
+            console.log('first sang', text);
+            console.log('second sang', request_body);
+
+           request({
+                "uri": "https://graph.facebook.com/v6.0/me/messages",
+                "qs": { "access_token": PAGE_ACCESS_TOKEN },
+                "method": "POST",
+                "json": request_body
+              }, (err, res, body) => {
+                if (!err) { 
+                  console.log('message sent!');
+                } else {
+                  console.error("Unable to send message:" + err);
+                }
+              }); //end of request
+
+          }//end of this week
 
           
 
