@@ -456,14 +456,14 @@ app.post('/webhook', (req, res) => {
           //start of this week
           else if(message.payload == "this_week" || message.text == "This Week")
           {
-            
+             let request_body;
             
             var d = new Date();
             var n = d.getDay();
            // console.log(n);
             switch (n) {
              case 0:
-              let request_body = {
+               request_body = {
                       "recipient": {
                         "id": recipientId
                       },
@@ -519,7 +519,7 @@ app.post('/webhook', (req, res) => {
 
                break;
               case 1:
-                let request_body = {
+                 request_body = {
                       "recipient": {
                         "id": recipientId
                       },
@@ -570,7 +570,7 @@ app.post('/webhook', (req, res) => {
                 break;
 
                case 2:
-                 let request_body = {
+                  request_body = {
                       "recipient": {
                         "id": recipientId
                       },
@@ -614,7 +614,7 @@ app.post('/webhook', (req, res) => {
 
                break;
                case 3:
-                let request_body = {
+                 request_body = {
                       "recipient": {
                         "id": recipientId
                       },
@@ -653,7 +653,7 @@ app.post('/webhook', (req, res) => {
 
                break;
                case 4:
-                  let request_body = {
+                   request_body = {
                       "recipient": {
                         "id": recipientId
                       },
@@ -686,7 +686,7 @@ app.post('/webhook', (req, res) => {
                     }
                  break;
                case 5:
-                 let request_body = {
+                  request_body = {
                       "recipient": {
                         "id": recipientId
                       },
@@ -714,7 +714,7 @@ app.post('/webhook', (req, res) => {
                     }
                  break;
                case 6:
-                let request_body = {
+                 request_body = {
                       "recipient": {
                         "id": recipientId
                       },
@@ -839,7 +839,7 @@ app.post('/webhook', (req, res) => {
             
             
             //setupavailable(recipientId, message.quick_reply.payload)
-            
+
 
             let request_body = {
               "recipient": {
