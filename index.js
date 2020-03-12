@@ -157,7 +157,7 @@ function setupPersistentMenu(res){
     }
 
 function setupavailable(recipient_Id,match_date){
-  db.collection('match').doc(recipient_Id).set({
+  db.collection('match').doc().set({
         challengerID: recipient_Id,
         date: match_date
     })
@@ -205,6 +205,8 @@ app.get('/challengelater/:id',(req,res)=>{
   //res.sendFile(__dirname + '/public/calendar.html')
 })
 
+
+//match database
 app.post('/data', (req,res)=>{
   console.log(req.body.userId, req.body.date);
   setupavailable(req.body.userId,req.body.date);
@@ -212,7 +214,7 @@ app.post('/data', (req,res)=>{
 });
 
 app.post('/registerData', (req,res)=>{
-  console.log();
+ // console.log();
   db.collection('users').doc().set({
         Name: req.body.Name,
         Age: req.body.age,
@@ -454,7 +456,7 @@ app.post('/webhook', (req, res) => {
           //start of this week
           else if(message.payload == "this_week" || message.text == "This Week")
           {
-            
+            /*            
             console.log("success pass this week");
             var cars = ["Mon", "Tue", "Web", "Thur", "Fri", "Sat","Sun"];
             var d = new Date;
@@ -492,7 +494,42 @@ app.post('/webhook', (req, res) => {
             console.log('first sang', text);
             console.log('second sang', request_body);
 
-           request({
+            */
+
+            let request_body = {
+              "recipient": {
+                "id": recipientId
+              },
+
+              "messaging_type": "RESPONSE",
+              "message": 
+              {
+                "text": "Choose a date:",
+                "quick_replies":
+                [
+                  {
+                    "content_type":"text",
+                    "title":"Fri",
+                    "payload":"Fri"
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Sat",
+                    "payload":"Sat"  
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"Sun",
+                    "payload":"Sun"   
+                  }
+                ]
+              }
+            
+            }
+
+
+
+            request({
                 "uri": "https://graph.facebook.com/v6.0/me/messages",
                 "qs": { "access_token": PAGE_ACCESS_TOKEN },
                 "method": "POST",
@@ -503,7 +540,9 @@ app.post('/webhook', (req, res) => {
                 } else {
                   console.error("Unable to send message:" + err);
                 }
-              }); //end of request
+              });
+
+            //end of request
 
           }//end of this week
 
@@ -520,25 +559,25 @@ app.post('/webhook', (req, res) => {
               "messaging_type": "RESPONSE",
               "message": 
               {
-                "text": "This week or Next Week",
+                "text": "Choose a date:",
                 "quick_replies":
                 [
                   {
                     "content_type":"text",
-                    "title":"This Week",
-                    "payload":"this_week",
+                    "title":"Sun",
+                    "payload":"Sun",
                     "image_url":""
                   },
                   {
                     "content_type":"text",
-                    "title":"Next Week",
-                    "payload":"next_week",
+                    "title":"Mon",
+                    "payload":"Mon",
                     "image_url":""   
                   },
                   {
                     "content_type":"text",
-                    "title":"Cancel",
-                    "payload":"challenge_later",
+                    "title":"Tue",
+                    "payload":"Tue",
                     "image_url":""   
                   }
                 ]
