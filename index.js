@@ -421,7 +421,7 @@ app.post('/webhook', (req, res) => {
 
 
           //start of challenge later
-          else if(message.payload == "challenge_later" || message.quick_reply.payload == "challenge_later" || message.text == "Challenge Later" )
+          else if(message.payload == "challenge_later" || message.text == "Challenge Later" )
           {
            callSendAPI(recipientId, {
               "attachment":{
