@@ -863,18 +863,19 @@ app.post('/webhook', (req, res) => {
           //start of choose date payload
           else if(message.quick_reply.payload == "Sun" || message.quick_reply.payload == "Mon" || message.quick_reply.payload == "Tue" || message.quick_reply.payload == "Wed" || message.quick_reply.payload == "Thurs" || message.quick_reply.payload == "Fri" || message.quick_reply.payload == "Sat")
           {
-            
+
+            let request_body;
             var dayfrompayload = message.quick_reply.payload;
             var date = getDateOfWeekday(dayfrompayload);
             setupavailable(recipientId, message.quick_reply.payload)
             db.collection('match').doc().set({
               challengerID: recipientId,
               weekday: dayfrompayload,
-              date: date
+              Dates: date
             })
             .then(function(docRef) {
                 console.log("Document written with ID", docRef);
-                let request_body = {
+               request_body = {
               "recipient": {
                 "id": recipientId
               },
@@ -902,6 +903,31 @@ app.post('/webhook', (req, res) => {
             }
             // end of more 
 
+            
+               
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+
+
+               request_body = {
+              "recipient": {
+                "id": recipientId
+              },
+              
+              "messaging_type": "RESPONSE",
+              "message": 
+              {
+                "text": `We will notify you if you got challenged on that day.`
+              }
+
+
+            }
+
+            
+            });
+
+
              request({
                 "uri": "https://graph.facebook.com/v6.0/me/messages",
                 "qs": { "access_token": PAGE_ACCESS_TOKEN },
@@ -915,16 +941,6 @@ app.post('/webhook', (req, res) => {
                 }
               });
              // end of request 
-               
-            })
-            .catch(function(error) {
-                console.error("Error adding document: ", error);
-                
-            
-            });
-
-
-            
 
            
                 
