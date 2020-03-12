@@ -156,9 +156,10 @@ function setupPersistentMenu(res){
         });
     }
 
-function setupavailable(recipient_Id,match_date){
+function setupavailable(recipient_Id,day, match_date){
   db.collection('match').doc().set({
         challengerID: recipient_Id,
+        weekday: day,
         date: match_date
     })
     .then(function(docRef) {
@@ -170,6 +171,32 @@ function setupavailable(recipient_Id,match_date){
         console.error("Error adding document: ", error);
     
     });
+}
+
+
+//auto convert to weekday to date 
+function getDateOfWeekday(refday){
+    var days = {
+        Mon: 1,
+        Tue: 2,
+        Wed: 3,
+        Thur: 4,
+        Fri: 5,
+        Sat: 6,
+        Sun: 0
+    };
+    if(!days.hasOwnProperty(refday))throw new Error(refday+" is not listed in "+JSON.stringify(days));
+    var currDate = new Date();
+    var currTimestamp = currDate.getTime();
+    var triggerDay = days[refday];
+    var dayMillDiff=0;
+    var dayInMill = 1000*60*60*24;
+    // add a day to dayMillDiff as long as the desired refday (sunday for instance) is not reached
+    while(currDate.getDay()!=triggerDay){
+        dayMillDiff += dayInMill;
+        currDate = new Date(currDate.getTime()+dayInMill);
+    }
+    return new Date(currTimestamp + dayMillDiff);
 }
 
 
@@ -837,11 +864,17 @@ app.post('/webhook', (req, res) => {
           else if(message.quick_reply.payload == "Sun" || message.quick_reply.payload == "Mon" || message.quick_reply.payload == "Tue" || message.quick_reply.payload == "Wed" || message.quick_reply.payload == "Thurs" || message.quick_reply.payload == "Fri" || message.quick_reply.payload == "Sat")
           {
             
-            
-            //setupavailable(recipientId, message.quick_reply.payload)
-
-
-            let request_body = {
+            var dayfrompayload = message.quick_reply.payload;
+            var date = getDateOfWeekday(dayfrompayload);
+            setupavailable(recipientId, message.quick_reply.payload)
+            db.collection('match').doc().set({
+              challengerID: recipientId,
+              weekday: dayfrompayload,
+              date: date
+            })
+            .then(function(docRef) {
+                console.log("Document written with ID", docRef);
+                let request_body = {
               "recipient": {
                 "id": recipientId
               },
@@ -867,8 +900,9 @@ app.post('/webhook', (req, res) => {
 
 
             }
+            // end of more 
 
-            request({
+             request({
                 "uri": "https://graph.facebook.com/v6.0/me/messages",
                 "qs": { "access_token": PAGE_ACCESS_TOKEN },
                 "method": "POST",
@@ -880,6 +914,19 @@ app.post('/webhook', (req, res) => {
                   console.error("Unable to send message:" + err);
                 }
               });
+             // end of request 
+               
+            })
+            .catch(function(error) {
+                console.error("Error adding document: ", error);
+                
+            
+            });
+
+
+            
+
+           
                 
           }// end of choose date payload
 
