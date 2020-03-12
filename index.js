@@ -615,19 +615,34 @@ app.post('/webhook', (req, res) => {
           else if(message.quick_reply.payload == "Sun" || message.quick_reply.payload == "Mon" || message.quick_reply.payload == "Tue" || message.quick_reply.payload == "Wed" || message.quick_reply.payload == "Thurs" || message.quick_reply.payload == "Fri" || message.quick_reply.payload == "Sat")
           {
             
-            callSendAPI(recipientId,{
-              "text": "You have challenged to the Username. Please wait for the confirmation. We will notify you if the Username is confirm."
-            });
-            setupavailable(recipientId, message.quick_reply.payload)
+            
+            //setupavailable(recipientId, message.quick_reply.payload)
 
             let request_body = {
               "recipient": {
                 "id": recipientId
               },
+              
+              "messaging_type": "RESPONSE",
               "message": 
               {
-                "text":"We will notify you if you got challenged on that day."
+                "text": "Do you want to add another days",
+                "quick_replies":
+                [
+                  {
+                    "content_type":"text",
+                    "title":"Yes",
+                    "payload":"challenge_later"
+                  },
+                  {
+                    "content_type":"text",
+                    "title":"No",
+                    "payload":"no"
+                  }
+                ]
               }
+
+
             }
 
             request({
@@ -644,6 +659,46 @@ app.post('/webhook', (req, res) => {
               });
                 
           }// end of choose date payload
+
+
+
+          //start of thank you 
+          else if(message.quick_reply.payload == "no" )
+          {
+            
+            
+            //setupavailable(recipientId, message.quick_reply.payload)
+
+            let request_body = {
+              "recipient": {
+                "id": recipientId
+              },
+              
+              "messaging_type": "RESPONSE",
+              "message": 
+              {
+                "text": "If you want to challenge instant now."
+              }
+
+
+            }
+
+            request({
+                "uri": "https://graph.facebook.com/v6.0/me/messages",
+                "qs": { "access_token": PAGE_ACCESS_TOKEN },
+                "method": "POST",
+                "json": request_body
+              }, (err, res, body) => {
+                if (!err) { 
+                  console.log('message sent!');
+                } else {
+                  console.error("Unable to send message:" + err);
+                }
+              });
+                
+          }// end of thank you
+
+
 
           
           
