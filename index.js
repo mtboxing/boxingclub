@@ -677,7 +677,7 @@ app.post('/webhook', (req, res) => {
               "messaging_type": "RESPONSE",
               "message": 
               {
-                "text": "If you want to challenge instant now."
+                "text": "We will notify you if you got challenged on that day.\n\n\nIf you want to challenge Today.\nClick the buttom Challenge Now."
               }
 
 
