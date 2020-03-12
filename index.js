@@ -456,76 +456,298 @@ app.post('/webhook', (req, res) => {
           //start of this week
           else if(message.payload == "this_week" || message.text == "This Week")
           {
-            /*            
-            console.log("success pass this week");
-            var cars = ["Mon", "Tue", "Web", "Thur", "Fri", "Sat","Sun"];
-            var d = new Date;
+            
+            
+            var d = new Date();
             var n = d.getDay();
-            //alert(n);
-            var text = "";
-            var i;
-            for (i = n  ; i < cars.length; i++) {
-              text += {
-                    "content_type":"text",
-                    "title":cars[i],
-                    "payload":cars[i],
-                    "image_url":""
-                  } + ",";
-            }
-            text = text.substring(0,text.length-1);
+           // console.log(n);
+            switch (n) {
+             case 0:
+              let request_body = {
+                      "recipient": {
+                        "id": recipientId
+                      },
 
-            let request_body = {
-              "recipient": {
-                "id": recipientId
-              },
+                      "messaging_type": "RESPONSE",
+                      "message": 
+                      {
+                        "text": "Choose a date:",
+                        "quick_replies":
+                        [
+                             {
+                             "content_type":"text",
+                             "title":"Next Mon",
+                             "payload":"Next Mon",
+                             "image_url":"http://example.com/img/red.png"
+                           },
+                           {
+                             "content_type":"text",
+                             "title":"Next Tue",
+                             "payload":"Next Tue",
+                             "image_url":"http://example.com/img/red.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Next Wed",
+                             "payload":"Next Wed",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Next Thur",
+                             "payload":"Next Thur",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Next Fri",
+                             "payload":"Next Fri",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Next Sat",
+                             "payload":"Next Sat",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Next Sun",
+                             "payload":"Next Sun",
+                             "image_url":"http://example.com/img/green.png"
+                           }
+                        ]
+                      }
+                    
+                    }
+              
 
-              "messaging_type": "RESPONSE",
-              "message": 
-              {
-                "text": "Choose a date",
-                "quick_replies":
-                [
-                  text
-                ]
-              }
+               break;
+              case 1:
+                let request_body = {
+                      "recipient": {
+                        "id": recipientId
+                      },
+
+                      "messaging_type": "RESPONSE",
+                      "message": 
+                      {
+                        "text": "Choose a date:",
+                        "quick_replies":
+                        [
+                            
+                           {
+                             "content_type":"text",
+                             "title":"Tue",
+                             "payload":"Tue",
+                             "image_url":"http://example.com/img/red.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Wed",
+                             "payload":"Wed",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Thur",
+                             "payload":"Thur",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Fri",
+                             "payload":"Fri",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Sat",
+                             "payload":"Sat",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Sun",
+                             "payload":"Sun",
+                             "image_url":"http://example.com/img/green.png"
+                           }
+                        ]
+                      }
+                    
+                    }
+                
+                break;
+
+               case 2:
+                 let request_body = {
+                      "recipient": {
+                        "id": recipientId
+                      },
+
+                      "messaging_type": "RESPONSE",
+                      "message": 
+                      {
+                        "text": "Choose a date:",
+                        "quick_replies":
+                        [
+                           {
+                             "content_type":"text",
+                             "title":"Wed",
+                             "payload":"Wed",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Thur",
+                             "payload":"Thur",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Fri",
+                             "payload":"Fri",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Sat",
+                             "payload":"Sat",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Sun",
+                             "payload":"Sun",
+                             "image_url":"http://example.com/img/green.png"
+                           }
+                        ]
+                      }
+                    
+                    }
+
+               break;
+               case 3:
+                let request_body = {
+                      "recipient": {
+                        "id": recipientId
+                      },
+
+                      "messaging_type": "RESPONSE",
+                      "message": 
+                      {
+                        "text": "Choose a date:",
+                        "quick_replies":
+                        [
+                            {
+                             "content_type":"text",
+                             "title":"Thur",
+                             "payload":"Thur",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Fri",
+                             "payload":"Fri",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Sat",
+                             "payload":"Sat",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Sun",
+                             "payload":"Sun",
+                             "image_url":"http://example.com/img/green.png"
+                           }
+                        ]
+                      }
+                    
+                    }
+
+               break;
+               case 4:
+                  let request_body = {
+                      "recipient": {
+                        "id": recipientId
+                      },
+
+                      "messaging_type": "RESPONSE",
+                      "message": 
+                      {
+                        "text": "Choose a date:",
+                        "quick_replies":
+                        [
+                            {
+                             "content_type":"text",
+                             "title":"Fri",
+                             "payload":"Fri",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Sat",
+                             "payload":"Sat",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Sun",
+                             "payload":"Sun",
+                             "image_url":"http://example.com/img/green.png"
+                           }
+                        ]
+                      }
+                    
+                    }
+                 break;
+               case 5:
+                 let request_body = {
+                      "recipient": {
+                        "id": recipientId
+                      },
+
+                      "messaging_type": "RESPONSE",
+                      "message": 
+                      {
+                        "text": "Choose a date:",
+                        "quick_replies":
+                        [
+                             {
+                             "content_type":"text",
+                             "title":"Sat",
+                             "payload":"Sat",
+                             "image_url":"http://example.com/img/green.png"
+                           },{
+                             "content_type":"text",
+                             "title":"Sun",
+                             "payload":"Sun",
+                             "image_url":"http://example.com/img/green.png"
+                           }
+                        ]
+                      }
+                    
+                    }
+                 break;
+               case 6:
+                let request_body = {
+                      "recipient": {
+                        "id": recipientId
+                      },
+
+                      "messaging_type": "RESPONSE",
+                      "message": 
+                      {
+                        "text": "Choose a date:",
+                        "quick_replies":
+                        [
+                            {
+                             "content_type":"text",
+                             "title":"Sun",
+                             "payload":"Sun",
+                             "image_url":"http://example.com/img/green.png"
+                           }
+                        ]
+                      }
+                    
+                    }
+                 break;
+                 
             
+              default:
+                break;
             }
 
-            console.log('first sang', text);
-            console.log('second sang', request_body);
+  
 
-            */
 
-            let request_body = {
-              "recipient": {
-                "id": recipientId
-              },
+            //////////////////
 
-              "messaging_type": "RESPONSE",
-              "message": 
-              {
-                "text": "Choose a date:",
-                "quick_replies":
-                [
-                  {
-                    "content_type":"text",
-                    "title":"Fri",
-                    "payload":"Fri"
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Sat",
-                    "payload":"Sat"  
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Sun",
-                    "payload":"Sun"   
-                  }
-                ]
-              }
-            
-            }
+           
 
 
 
@@ -617,6 +839,7 @@ app.post('/webhook', (req, res) => {
             
             
             //setupavailable(recipientId, message.quick_reply.payload)
+            
 
             let request_body = {
               "recipient": {
@@ -660,7 +883,7 @@ app.post('/webhook', (req, res) => {
                 
           }// end of choose date payload
 
-          //start of yes
+          //start of add day yes
           else if(message.quick_reply.payload == "yes" )
           {
             
@@ -695,7 +918,7 @@ app.post('/webhook', (req, res) => {
                 
           }// end of yes
 
-          //start of no
+          //start of add day no
           else if(message.quick_reply.payload == "no" )
           {
             
