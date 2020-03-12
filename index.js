@@ -632,7 +632,7 @@ app.post('/webhook', (req, res) => {
                   {
                     "content_type":"text",
                     "title":"Yes",
-                    "payload":"challenge_later"
+                    "payload":"yes"
                   },
                   {
                     "content_type":"text",
@@ -660,9 +660,42 @@ app.post('/webhook', (req, res) => {
                 
           }// end of choose date payload
 
+          //start of yes
+          else if(message.quick_reply.payload == "yes" )
+          {
+            
+            
+            callSendAPI(recipientId, {
+              "attachment":{
+                "type":"template",
+                  "payload":{
+                    "template_type":"button",
+                    "text": `Do you want to challenge this week or next week.\n`,
+                    "buttons":
+                    [
+                      {
+                        "type":"postback",
+                        "title":"This Week",
+                        "payload":"this_week"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Next Week",
+                        "payload":"next_week"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Cancel",
+                        "payload":"Challenge"
+                      }
+                    ]
+                  }
+                }
+              });
+                
+          }// end of yes
 
-
-          //start of thank you 
+          //start of no
           else if(message.quick_reply.payload == "no" )
           {
             
@@ -714,7 +747,7 @@ app.post('/webhook', (req, res) => {
                 }
               });
                 
-          }// end of thank you
+          }// end of no
 
 
 
