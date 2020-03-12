@@ -156,10 +156,10 @@ function setupPersistentMenu(res){
         });
     }
 
-function setupavailable(recipient_Id,day, match_date){
+function setupavailable(recipient_Id,match_date){
   db.collection('match').doc().set({
         challengerID: recipient_Id,
-        weekday: day,
+        
         date: match_date
     })
     .then(function(docRef) {
