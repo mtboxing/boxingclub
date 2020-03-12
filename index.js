@@ -421,6 +421,57 @@ app.post('/webhook', (req, res) => {
           //start of challenge later
           else if(message.payload == "challenge_later" || message.text == "Challenge Later")
           {
+           callSendAPI(recipientId, {
+              "attachment":{
+                "type":"template",
+                  "payload":{
+                    "template_type":"button",
+                    "text": `Do you want to challenge this week or next week.\n`,
+                    "buttons":
+                    [
+                      {
+                        "type":"postback",
+                        "title":"This Week",
+                        "payload":"this_week"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Next Week",
+                        "payload":"next_week"
+                      },
+                      {
+                        "type":"postback",
+                        "title":"Cancel",
+                        "payload":"Challenge"
+                      }
+                    ]
+                  }
+                }
+              });
+          }
+          //end of challenge later
+
+          //start of this week
+          else if(message.payload == "this_week" || message.text == "This Week")
+          {
+            
+            console.log("success pass this week");
+            var cars = ["Mon", "Tue", "Web", "Thur", "Fri", "Sat","Sun"];
+            var d = new Date;
+            var n = d.getDay();
+            //alert(n);
+            var text = "";
+            var i;
+            for (i = n  ; i < cars.length; i++) {
+              text += {
+                    "content_type":"text",
+                    "title":cars[i],
+                    "payload":cars[i],
+                    "image_url":""
+                  } + ",";
+            }
+            text = text.substring(0,text.length-1);
+
             let request_body = {
               "recipient": {
                 "id": recipientId
@@ -429,35 +480,19 @@ app.post('/webhook', (req, res) => {
               "messaging_type": "RESPONSE",
               "message": 
               {
-                "text": "This week or Next Week",
+                "text": "Choose a date",
                 "quick_replies":
                 [
-                  {
-                    "content_type":"text",
-                    "title":"This Week",
-                    "payload":"this_week",
-                    "image_url":""
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Next Week",
-                    "payload":"next_week",
-                    "image_url":""   
-                  },
-                  {
-                    "content_type":"text",
-                    "title":"Cancel",
-                    "payload":"challenge_later",
-                    "image_url":""   
-                  }
+                  text
                 ]
               }
             
             }
 
+            console.log('first sang', text);
+            console.log('second sang', request_body);
 
-
-            request({
+           request({
                 "uri": "https://graph.facebook.com/v6.0/me/messages",
                 "qs": { "access_token": PAGE_ACCESS_TOKEN },
                 "method": "POST",
@@ -468,13 +503,9 @@ app.post('/webhook', (req, res) => {
                 } else {
                   console.error("Unable to send message:" + err);
                 }
-              });
+              }); //end of request
 
-
-          }
-          //end of challenge later
-
-          
+          }//end of this week
 
           //start of next week
         else if(message.quick_reply.payload == "next_week" || message.text == "Next Week")
@@ -534,64 +565,10 @@ app.post('/webhook', (req, res) => {
           }
           //end of challenge later
 
-/*
+
 
           
-          //start of this week
-          else if(message.quick_reply.payload == "this_week")
-          {
-            
-            console.log("success pass this week");
-            var cars = ["Mon", "Tue", "Web", "Thur", "Fri", "Sat","Sun"];
-            var d = new Date;
-            var n = d.getDay();
-            //alert(n);
-            var text = "";
-            var i;
-            for (i = n  ; i < cars.length; i++) {
-              text += {
-                    "content_type":"text",
-                    "title":cars[i],
-                    "payload":cars[i],
-                    "image_url":""
-                  } + ",";
-            }
-            text = text.substring(0,text.length-1);
-
-            let request_body = {
-              "recipient": {
-                "id": recipientId
-              },
-
-              "messaging_type": "RESPONSE",
-              "message": 
-              {
-                "text": "Choose a date",
-                "quick_replies":
-                [
-                  text
-                ]
-              }
-            
-            }
-
-            console.log('first sang', text);
-            console.log('second sang', request_body);
-
-           request({
-                "uri": "https://graph.facebook.com/v6.0/me/messages",
-                "qs": { "access_token": PAGE_ACCESS_TOKEN },
-                "method": "POST",
-                "json": request_body
-              }, (err, res, body) => {
-                if (!err) { 
-                  console.log('message sent!');
-                } else {
-                  console.error("Unable to send message:" + err);
-                }
-              }); //end of request
-
-          }//end of this week
+          
 
           
 
@@ -629,7 +606,7 @@ app.post('/webhook', (req, res) => {
                 
           }// end of choose date payload
 
-          */
+          
           
 
       	}
