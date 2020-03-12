@@ -508,7 +508,7 @@ app.post('/webhook', (req, res) => {
           }//end of this week
 
           //start of next week
-        else if(message.quick_reply.payload == "next_week" || message.text == "Next Week")
+        else if(message.payload == "next_week" || message.text == "Next Week")
           {
            // console.log("success pass next week");
 
