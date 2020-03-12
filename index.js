@@ -248,7 +248,7 @@ app.post('/webhook', (req, res) => {
       console.log(webhook_event);
 
       var recipientId = webhook_event.sender.id 
-      var message = webhook_event.message || webhook_event.postback || webhook_event.message.quick_reply || webhook_event.message.quick_reply.payload
+      var message = webhook_event.message || webhook_event.postback || webhook_event.quick_reply
 
       	if(message.text || message.title || message.payload)
         {
@@ -534,6 +534,9 @@ app.post('/webhook', (req, res) => {
           }
           //end of challenge later
 
+/*
+
+          
           //start of this week
           else if(message.quick_reply.payload == "this_week")
           {
@@ -595,10 +598,10 @@ app.post('/webhook', (req, res) => {
           //start of choose date payload
           else if(message.quick_reply.payload == "Sun" || message.quick_reply.payload == "Mon" || message.quick_reply.payload == "Tue" || message.quick_reply.payload == "Wed" || message.quick_reply.payload == "Thurs" || message.quick_reply.payload == "Fri" || message.quick_reply.payload == "Sat")
           {
-            /*
+            
             callSendAPI(recipientId,{
               "text": "You have challenged to the Username. Please wait for the confirmation. We will notify you if the Username is confirm."
-            });*/
+            });
             setupavailable(recipientId, message.quick_reply.payload)
 
             let request_body = {
@@ -625,6 +628,9 @@ app.post('/webhook', (req, res) => {
               });
                 
           }// end of choose date payload
+
+          */
+          
 
       	}
 //end of main function
