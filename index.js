@@ -379,16 +379,7 @@ app.post('/webhook', (req, res) => {
             }
 
 
-            
-            
-            db.collection('match').where('date','==' ,'03/19/2020' ).get().then(item=>{
-              if(item.empty){
-                ///show sth
-
-              }else{
-                item.docs.forEach(doc=>{
-                    // fetchind facebook profile 
-              request({
+            request({
               "uri": "https://graph.facebook.com/v5.0/me/messages",
               "qs": { "access_token": PAGE_ACCESS_TOKEN },
               "method": "POST",
@@ -403,15 +394,15 @@ app.post('/webhook', (req, res) => {
                     "elements":
                       [
                          {
-                          "title":`${doc.data.challengerID}`,
+                          "title":``,
                           "image_url":"https://i.pinimg.com/originals/3a/59/f1/3a59f13bbe775518072832cb0f308aa0.png",  
-                          "subtitle":`If you want to challenge that person, you can send challenge now. ${doc.data.date}`,
+                          "subtitle":`If you want to challenge that person, you can send challenge now.`,
                           "buttons":
                           [
                             {
                               "type":"postback",
-                              "title":"Send Challenge",
-                              "payload":"send_challenge"
+                              "title":"Request Challenge",
+                              "payload":"request_challenge"
                             },
                             {
                               "type":"postback",
@@ -428,18 +419,30 @@ app.post('/webhook', (req, res) => {
               } else {
                 console.error("Unable to send message:" + err);
               }
-            });
-                });
+            });//request end
+
+            
+            
+          /*  db.collection('match').where('date','==' ,'03/19/2020' ).get().then(item=>{
+              if(item.empty){
+                ///show sth
+
+              }else{
+                item.docs.forEach(doc=>{
+                    // fetchind facebook profile 
+              
+                });// for each end
 
               }
-            })
+            })//db collection end
 
             // Send the HTTP request to the Messenger Platform
+          */
           
           }//end of challenge now
 
           //start of wait for accept the challenge
-          else if(message.payload == "send_challenge")
+          else if(message.payload == "request_challenge")
           {
             callSendAPI(recipientId,{
               "text": "You have challenged to the Username. Please wait for the confirmation. We will notify you if the Username is confirm."
