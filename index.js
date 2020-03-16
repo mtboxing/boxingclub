@@ -507,39 +507,32 @@ app.post('/webhook', (req, res) => {
                              {
                              "content_type":"text",
                              "title":"Next Mon",
-                             "payload":"Next Mon",
-                             "image_url":"http://example.com/img/red.png"
+                             "payload":"Next Mon"
                            },
                            {
                              "content_type":"text",
                              "title":"Next Tue",
-                             "payload":"Next Tue",
-                             "image_url":"http://example.com/img/red.png"
+                             "payload":"Next Tue"
                            },{
                              "content_type":"text",
                              "title":"Next Wed",
-                             "payload":"Next Wed",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Next Wed"
                            },{
                              "content_type":"text",
                              "title":"Next Thur",
-                             "payload":"Next Thur",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Next Thur"
                            },{
                              "content_type":"text",
                              "title":"Next Fri",
-                             "payload":"Next Fri",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Next Fri"
                            },{
                              "content_type":"text",
                              "title":"Next Sat",
-                             "payload":"Next Sat",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Next Sat"
                            },{
                              "content_type":"text",
                              "title":"Next Sun",
-                             "payload":"Next Sun",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Next Sun"
                            }
                         ]
                       }
@@ -564,33 +557,27 @@ app.post('/webhook', (req, res) => {
                            {
                              "content_type":"text",
                              "title":"Tue",
-                             "payload":"Tue",
-                             "image_url":"http://example.com/img/red.png"
+                             "payload":"Tue"
                            },{
                              "content_type":"text",
                              "title":"Wed",
-                             "payload":"Wed",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Wed"
                            },{
                              "content_type":"text",
                              "title":"Thur",
-                             "payload":"Thur",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Thur"
                            },{
                              "content_type":"text",
                              "title":"Fri",
-                             "payload":"Fri",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Fri"
                            },{
                              "content_type":"text",
                              "title":"Sat",
-                             "payload":"Sat",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Sat"
                            },{
                              "content_type":"text",
                              "title":"Sun",
-                             "payload":"Sun",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Sun"
                            }
                         ]
                       }
@@ -614,28 +601,23 @@ app.post('/webhook', (req, res) => {
                            {
                              "content_type":"text",
                              "title":"Wed",
-                             "payload":"Wed",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Wed"
                            },{
                              "content_type":"text",
                              "title":"Thur",
-                             "payload":"Thur",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Thur"
                            },{
                              "content_type":"text",
                              "title":"Fri",
-                             "payload":"Fri",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Fri"
                            },{
                              "content_type":"text",
                              "title":"Sat",
-                             "payload":"Sat",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Sat"
                            },{
                              "content_type":"text",
                              "title":"Sun",
-                             "payload":"Sun",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Sun"
                            }
                         ]
                       }
@@ -658,23 +640,19 @@ app.post('/webhook', (req, res) => {
                             {
                              "content_type":"text",
                              "title":"Thur",
-                             "payload":"Thur",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Thur"
                            },{
                              "content_type":"text",
                              "title":"Fri",
-                             "payload":"Fri",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Fri"
                            },{
                              "content_type":"text",
                              "title":"Sat",
-                             "payload":"Sat",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Sat"
                            },{
                              "content_type":"text",
                              "title":"Sun",
-                             "payload":"Sun",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Sun"
                            }
                         ]
                       }
@@ -697,18 +675,15 @@ app.post('/webhook', (req, res) => {
                             {
                              "content_type":"text",
                              "title":"Fri",
-                             "payload":"Fri",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Fri"
                            },{
                              "content_type":"text",
                              "title":"Sat",
-                             "payload":"Sat",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Sat"
                            },{
                              "content_type":"text",
                              "title":"Sun",
-                             "payload":"Sun",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Sun"
                            }
                         ]
                       }
@@ -730,13 +705,11 @@ app.post('/webhook', (req, res) => {
                              {
                              "content_type":"text",
                              "title":"Sat",
-                             "payload":"Sat",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Sat"
                            },{
                              "content_type":"text",
                              "title":"Sun",
-                             "payload":"Sun",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Sun"
                            }
                         ]
                       }
@@ -758,8 +731,7 @@ app.post('/webhook', (req, res) => {
                             {
                              "content_type":"text",
                              "title":"Sun",
-                             "payload":"Sun",
-                             "image_url":"http://example.com/img/green.png"
+                             "payload":"Sun"
                            }
                         ]
                       }
