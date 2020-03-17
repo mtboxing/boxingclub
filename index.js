@@ -99,7 +99,7 @@ function setupGetStartedButton(res){
 /*function getUserProfile(sender_psid) {
   return new Promise(resolve => {
     request({
-      "uri": "https://graph.facebook.com/"+sender_psid+"?fields=first_name,last_name,profile_pic&access_token=EAAGmSf4ySjMBACxNfZAdxEzIPZCT6lyZAyXZCKHmM2DnRO87hH3s5rRaofImCtfTLp3198fMrntu0K5kZBa0WGbcYx4RC4CUNRRku1U3GFvsBO5ZCllHGA6FaWMeL5ZALdph3omIDBanwAW27JTM5zFYslhbqVerzPn7lglQ4vO5r26P4gvIzBb",
+      "uri": "https://graph.facebook.com/"+sender_psid+"?fields=first_name,last_name,profile_pic&access_token="+PAGE_ACCESS_TOKEN",
       "method": "GET"
       }, (err, res, body) => {
         if (!err) { 
@@ -226,11 +226,11 @@ app.get('/register', (req,res)=>{
   res.sendFile(__dirname + '/public/register.html')
 })
 
-app.get('/challengelater/:id',(req,res)=>{
+/*app.get('/challengelater/:id',(req,res)=>{
  console.log(__dirname);
   res.render('calendar' , {receiptid: req.params.id }); 
   //res.sendFile(__dirname + '/public/calendar.html')
-})
+}) */
 
 
 //match database

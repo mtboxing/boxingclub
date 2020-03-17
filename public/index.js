@@ -62,13 +62,13 @@ function test(){
    		body: JSON.stringify(data) // body data type must match "Content-Type" header
   		})
        .then((response) => {
-       	  MessengerExtensions.requestCloseBrowser(function success() {
-          console.log("Webview closing");
-          alert('close');
-	      }, function error(err) {
-	          console.log(err);
-	          alert('colse error: ');
-	      });
+       // 	  MessengerExtensions.requestCloseBrowser(function success() {
+       //    console.log("Webview closing");
+       //    alert('close');
+	      // }, function error(err) {
+	      //     console.log(err);
+	      //     alert('colse error: ');
+	      // });
         // close automatically 
     	}).catch(err=>{
     		alert(err,'mayo');
