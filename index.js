@@ -376,7 +376,7 @@ app.post('/webhook', (req, res) => {
               "messaging_type": "RESPONSE",
               "message": 
               {
-                "text": `We will notify you if you got challenged on that day.`
+                "text": `This is available boxer you can challenge now.`
               }
 
 
@@ -394,97 +394,35 @@ app.post('/webhook', (req, res) => {
                     "attachment":{
                       "type":"template",
                         "payload":{
-                          "template_type":"button",
-                          "text": `IF you want to challenge "Today".\nClick the button "Challenge Now"`,
-                          "buttons":
+                          "template_type":"generic",
+                          "elements":
                           [
                             {
+                            "title":`Username`,
+                            "image_url":"https://i.pinimg.com/originals/3a/59/f1/3a59f13bbe775518072832cb0f308aa0.png",  
+                            "subtitle":`If you want to challenge that person, you can send challenge now.`,
+                            "buttons":
+                            [
+                              {
                               "type":"postback",
-                              "title":"Challenge Now",
-                              "payload":"challenge_now"
+                              "title":"Request Challenge",
+                              "payload":"request_challenge"
+                              },
+                              {
+                              "type":"postback",
+                              "title":"Cancel",
+                              "payload":"Get Started"
+                              }
+                            ]
                             }
                           ]
                         }
                       }
                     });
-
                 } else {
                   console.error("Unable to send message:" + err);
                 }
               });
-            
-
-
-
-
-
-
-
-
-
-            /*
-            let request_body = {
-              "recipient": {
-                "id": recipientId
-              },
-              "messaging_type": "RESPONSE",
-              "message": 
-              {
-                "text": "This is available boxer you can challenge now."
-              }
-            }
-
-            request({
-              "uri": "https://graph.facebook.com/v6.0/me/messages",
-              "qs": { "access_token": PAGE_ACCESS_TOKEN },
-              "method": "POST",
-              "json": request_body
-            }, (err, res, body) => {
-              if (!err) {
-                  callSendAPI(recipientId,{
-                  "attachment":{
-                    "type":"template",
-                    "payload":{
-                    "template_type":"generic",
-                    "elements":
-                      [
-                         {
-                          "title":``,
-                          "image_url":"https://i.pinimg.com/originals/3a/59/f1/3a59f13bbe775518072832cb0f308aa0.png",  
-                          "subtitle":`If you want to challenge that person, you can send challenge now.`,
-                          "buttons":
-                          [
-                            {
-                              "type":"postback",
-                              "title":"Request Challenge",
-                              "payload":"request_challenge"
-                            },
-                            {
-                              "type":"postback",
-                              "title":"Cancel",
-                              "payload":"Challenge"
-                            }              
-                          ]      
-                        }
-
-                      ]
-                    }
-                  }
-                });
-                
-              } else {
-                console.error("Unable to send message:" + err);
-              }
-            });
-              //end of request
-
-            */
-            
-
-
-           
-
-            
             
           /*  db.collection('match').where('date','==' ,'03/19/2020' ).get().then(item=>{
               if(item.empty){
