@@ -372,6 +372,7 @@ app.post('/webhook', (req, res) => {
               "recipient": {
                 "id": recipientId
               },
+              "messaging_type": "RESPONSE",
               "message": 
               {
                 "text": "This is available boxer you can challenge now."
