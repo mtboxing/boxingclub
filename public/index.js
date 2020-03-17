@@ -48,8 +48,8 @@ function test(){
 			age: age,
 			gender: gender,
 			height: height,
-			weight: weight,
-			userid: uid
+			weight: weight
+			//userid: uid
 		}
 
 		fetch('https://mtboxing.herokuapp.com/registerData',{
