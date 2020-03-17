@@ -372,6 +372,61 @@ app.post('/webhook', (req, res) => {
               "recipient": {
                 "id": recipientId
               },
+              
+              "messaging_type": "RESPONSE",
+              "message": 
+              {
+                "text": `We will notify you if you got challenged on that day.`
+              }
+
+
+            }
+
+            request({
+                "uri": "https://graph.facebook.com/v6.0/me/messages",
+                "qs": { "access_token": PAGE_ACCESS_TOKEN },
+                "method": "POST",
+                "json": request_body
+              }, (err, res, body) => {
+                if (!err) { 
+                  console.log('message sent!');
+                  callSendAPI(recipientId, {
+                    "attachment":{
+                      "type":"template",
+                        "payload":{
+                          "template_type":"button",
+                          "text": `IF you want to challenge "Today".\nClick the button "Challenge Now"`,
+                          "buttons":
+                          [
+                            {
+                              "type":"postback",
+                              "title":"Challenge Now",
+                              "payload":"challenge_now"
+                            }
+                          ]
+                        }
+                      }
+                    });
+
+                } else {
+                  console.error("Unable to send message:" + err);
+                }
+              });
+            
+
+
+
+
+
+
+
+
+
+            /*
+            let request_body = {
+              "recipient": {
+                "id": recipientId
+              },
               "messaging_type": "RESPONSE",
               "message": 
               {
@@ -422,6 +477,8 @@ app.post('/webhook', (req, res) => {
               }
             });
               //end of request
+
+            */
             
 
 
