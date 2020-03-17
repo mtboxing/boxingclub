@@ -39,9 +39,9 @@ var PAGE_ACCESS_TOKEN = 'EAAC6SKNTfKQBAGvL4kHxN3bSVOCOgW5uEQhrWtKFZBargc6cKeQrgZ
                       "template_type":"generic",
                       "elements":[
                          {
-                          "title":"Do you have your account!",
-                          "image_url":"https://i.pinimg.com/originals/51/9b/cf/519bcfc9e1404745e9e0f63a4c15c623.jpg",  
-                          "subtitle":"Before challenge to anyone,  Click here to register",
+                          "title":"Username",
+                          "image_url":"https://i.pinimg.com/originals/3a/59/f1/3a59f13bbe775518072832cb0f308aa0.png",  
+                          "subtitle":`If you want to challenge that person, you can request to challenge now.`,
                           "default_action": {
                             "type": "web_url",
                             "url": "https://mtboxing.herokuapp.com/register",
@@ -162,6 +162,67 @@ callSendAPI(recipientId,{
               }
             
           });
+
+
+
+let body ="";
+ db.collection('match').where('date','==' ,'03/19/2020' ).get().then(item=>{
+              if(item.empty){
+                ///show sth
+
+              }else{
+                item.docs.forEach(doc=>{
+                    // fetchind facebook profile 
+                    body+="{
+                          "title":`${doc.data.challengerID}`,
+                          "image_url":"https://i.pinimg.com/originals/3a/59/f1/3a59f13bbe775518072832cb0f308aa0.png",  
+                          "subtitle":`If you want to challenge that person, you can send challenge now. ${doc.data.date}`,
+                          "buttons":
+                          [
+                            {
+                              "type":"postback",
+                              "title":"Send Challenge",
+                              "payload":"send_challenge"
+                            },
+                            {
+                              "type":"postback",
+                              "title":"Cancel",
+                              "payload":"Challenge"
+                            }              
+                          ]      
+                        }";
+              });
+
+              }
+            })
+
+             request({
+              "uri": "https://graph.facebook.com/v5.0/me/messages",
+              "qs": { "access_token": PAGE_ACCESS_TOKEN },
+              "method": "POST",
+              "json": request_body
+            }, (err, res, body) => {
+              if (!err) {
+                callSendAPI(recipientId,{
+                  "attachment":{
+                    "type":"template",
+                    "payload":{
+                    "template_type":"generic",
+                    "elements":
+                      [
+                         body
+
+                      ]
+                    }
+                  }
+                });
+              } else {
+                console.error("Unable to send message:" + err);
+              }
+            });
+
+
+
 */
 
 

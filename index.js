@@ -378,15 +378,14 @@ app.post('/webhook', (req, res) => {
               }
             }
 
-
             request({
-              "uri": "https://graph.facebook.com/v5.0/me/messages",
+              "uri": "https://graph.facebook.com/v6.0/me/messages",
               "qs": { "access_token": PAGE_ACCESS_TOKEN },
               "method": "POST",
               "json": request_body
             }, (err, res, body) => {
               if (!err) {
-                callSendAPI(recipientId,{
+                  callSendAPI(recipientId,{
                   "attachment":{
                     "type":"template",
                     "payload":{
@@ -416,10 +415,16 @@ app.post('/webhook', (req, res) => {
                     }
                   }
                 });
+                
               } else {
                 console.error("Unable to send message:" + err);
               }
-            });//request end
+            });
+              //end of request
+            
+
+
+           
 
             
             
