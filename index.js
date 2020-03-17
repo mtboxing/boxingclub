@@ -282,7 +282,7 @@ app.post('/webhook', (req, res) => {
       	if(message.text || message.title || message.payload)
         {
         //get started
-      		if(message.title=="Get Started" || message.text=="Get Started" || message.text=="Hello" || message.text=="hi" || message.text=="Hi") 
+      		if(message.title=="Get Started" || message.text=="Get Started" || message.text=="Hello" || message.text=="hi" || message.text=="Hi" || message.payload == "Cancel") 
           {
 
               const _EXTERNAL_URL = 'https://graph.facebook.com/'+recipientId+'?fields=first_name,last_name&access_token='+ PAGE_ACCESS_TOKEN ;
@@ -411,7 +411,7 @@ app.post('/webhook', (req, res) => {
                               {
                               "type":"postback",
                               "title":"Cancel",
-                              "payload":"Get Started"
+                              "payload":"Cancel"
                               }
                             ]
                             }
