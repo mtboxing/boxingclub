@@ -789,20 +789,20 @@ app.post('/webhook', (req, res) => {
                 [
                   {
                     "content_type":"text",
-                    "title":"Sun",
-                    "payload":"Sun",
+                    "title":"Today",
+                    "payload":"Today",
                     "image_url":""
                   },
                   {
                     "content_type":"text",
-                    "title":"Mon",
-                    "payload":"Mon",
+                    "title":"Tomorrow",
+                    "payload":"Tomorrow",
                     "image_url":""   
                   },
                   {
                     "content_type":"text",
-                    "title":"Tue",
-                    "payload":"Tue",
+                    "title":"The day after Tomorrow",
+                    "payload":"",
                     "image_url":""   
                   }
                 ]
